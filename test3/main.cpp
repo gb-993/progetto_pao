@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "sensor.h"
 #include "sensor_manager.h"
+#include "sensor_observer_interface.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])

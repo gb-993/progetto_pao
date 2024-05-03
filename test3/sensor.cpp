@@ -36,6 +36,9 @@ QList<QPointF> Sensor::getSimData() const {
 // metodi set
 void Sensor::setName(const QString& n) {
     name = n;
+    for(auto obs=observers.begin(); obs!=observers.end(); obs++){
+        (*obs)->notify(*this);
+    }
 }
 void Sensor::setType(const QString& t) {
     type = t;
@@ -83,4 +86,8 @@ void Sensor::print_sensor() const {
             qDebug() << "(" << point.x() << "," << point.y() << ")";
         }
     }
+}
+
+void Sensor::addObserver(Sensor_observer_interface *obs) {
+    observers.push_back(obs); // aggiungo osservatore alla lista
 }

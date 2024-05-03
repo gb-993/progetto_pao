@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QList>
-#include "Sensor.h"
+#include "sensor.h"
 
 class Sensor_manager : public QObject {
     Q_OBJECT

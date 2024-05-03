@@ -7,6 +7,8 @@
 #include <QObject>
 #include <QDebug>
 #include <QRandomGenerator>
+#include <QVector>
+#include "sensor_observer_interface.h"
 
 class Sensor: public QObject {
     Q_OBJECT
@@ -22,6 +24,8 @@ private:
 
     static int counter;
     int generateId() const;
+
+    QVector<Sensor_observer_interface*> observers;
 
 public:
     Sensor(QString ="default_name", QString ="default_type", double =0, double =0, QString ="default_environment", QString ="default_measure_unit");
@@ -47,6 +51,8 @@ public:
 
     bool has_simulation_data() const;
     void print_sensor() const;
+
+    void addObserver(Sensor_observer_interface*);
 
     ~Sensor() {}
 };
