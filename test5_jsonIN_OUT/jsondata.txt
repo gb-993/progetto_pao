@@ -1,0 +1,97 @@
+{
+    "sensors": [
+        {
+            "environment": "env1",
+            "id": 1,
+            "lower": 0,
+            "measure_unit": "default_measure_unit",
+            "name": "name1",
+            "simulationData": [
+                {
+                    "x": 1,
+                    "y": 2
+                },
+                {
+                    "x": 2,
+                    "y": 4
+                },
+                {
+                    "x": 3,
+                    "y": 6
+                },
+                {
+                    "x": 4,
+                    "y": 8
+                },
+                {
+                    "x": 5,
+                    "y": 10
+                }
+            ],
+            "type": "default_type",
+            "upper": 0
+        },
+        {
+            "environment": "env2",
+            "id": 2,
+            "lower": 0,
+            "measure_unit": "default_measure_unit",
+            "name": "name2",
+            "simulationData": [
+                {
+                    "x": 1,
+                    "y": 2
+                },
+                {
+                    "x": 2,
+                    "y": 4
+                },
+                {
+                    "x": 3,
+                    "y": 6
+                },
+                {
+                    "x": 4,
+                    "y": 8
+                },
+                {
+                    "x": 5,
+                    "y": 10
+                }
+            ],
+            "type": "default_type",
+            "upper": 0
+        },
+        {
+            "environment": "env3",
+            "id": 4,
+            "lower": 0,
+            "measure_unit": "default_measure_unit",
+            "name": "name3",
+            "simulationData": [
+                {
+                    "x": 1,
+                    "y": 2
+                },
+                {
+                    "x": 2,
+                    "y": 4
+                },
+                {
+                    "x": 3,
+                    "y": 6
+                },
+                {
+                    "x": 4,
+                    "y": 8
+                },
+                {
+                    "x": 5,
+                    "y": 10
+                }
+            ],
+            "type": "default_type",
+            "upper": 0
+        }
+    ]
+}
