@@ -1,0 +1,1 @@
+La parte di polimorfismo del model in teoria è finita, quando è ora di andare a fare la parte grafica poi si devono rendere osservatori i vari widget che ci servono

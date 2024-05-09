@@ -1,0 +1,22 @@
+{
+    "sensors": [
+        {
+            "environment": "Botte",
+            "id": 3,
+            "lower": 50,
+            "measure_unit": "CO2",
+            "name": "Mario",
+            "type": "Umidità",
+            "upper": 60
+        },
+        {
+            "environment": "Room",
+            "id": 4,
+            "lower": 20,
+            "measure_unit": "Gradi",
+            "name": "Giovanni",
+            "type": "Temperatura",
+            "upper": 30
+        }
+    ]
+}
