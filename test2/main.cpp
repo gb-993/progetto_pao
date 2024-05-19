@@ -7,13 +7,14 @@
 #include "sensor_filter.h"
 #include "sensor_manager.h"
 #include <QApplication>
+#include <controller.h>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
-
+    /*
     // test classe Sensor_light
     qDebug() << "Test classe Sensor_light";
     Sensor_light s1;
@@ -55,6 +56,14 @@ int main(int argc, char *argv[])
     //sm.print_sensor_list();
     //sm.removeSensor(&s3);
     //sm.print_sensor_list();
+    */
+    Sensor_manager sm;
+    Controller c1;
+
+
+    // c1.func_save(sm, "C:/Users/gbmat/Desktop/progetto_pao/test2/jsondata.txt");
+    c1.func_load("C:/Users/gbmat/Desktop/progetto_pao/test2/jsondata.txt",sm);
+    sm.print_sensor_list();
 
     return a.exec();
 }

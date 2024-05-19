@@ -9,10 +9,12 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    controller.cpp \
     main.cpp \
     mainwindow.cpp \
     sensor.cpp \
     sensor_filter.cpp \
+    sensor_generator.cpp \
     sensor_humidity.cpp \
     sensor_light.cpp \
     sensor_manager.cpp \
@@ -20,9 +22,11 @@ SOURCES += \
     sensor_volume.cpp
 
 HEADERS += \
+    controller.h \
     mainwindow.h \
     sensor.h \
     sensor_filter.h \
+    sensor_generator.h \
     sensor_humidity.h \
     sensor_light.h \
     sensor_manager.h \

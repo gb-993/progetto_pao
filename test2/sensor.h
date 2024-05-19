@@ -8,6 +8,9 @@
 #include <QDebug>
 #include <QRandomGenerator>
 #include <QDateTime>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonValue>
 
 class Sensor: public QObject {
     Q_OBJECT
@@ -41,8 +44,14 @@ public:
     virtual bool has_simulation_data() const;
     virtual void print_sensor() const;
 
+    // metodi serializzazione
+    virtual QJsonObject sensorToJson() =0;
+    static Sensor* jsonToSensor(const QJsonValue&); // ancora da implementare
+
+
     virtual ~Sensor() {}
 };
 
+//Sensor* jsonToSensor(const QJsonValue&);
 
 #endif // SENSOR_H

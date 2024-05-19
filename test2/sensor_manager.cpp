@@ -1,4 +1,10 @@
 #include "sensor_manager.h"
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonValue>
+#include <QJsonArray>
+#include <QJsonObject>
+#include <sensor_generator.h>
 
 Sensor_manager::Sensor_manager() {
     // AGGIUNTA IO: inserisco 4 sensori di defalt
@@ -33,3 +39,46 @@ void Sensor_manager::print_sensor_list() {
         }
     }
 }
+
+// crea il json_file finale
+// "sensors" : [un array di sensori in formato json]
+QJsonObject Sensor_manager::sensorListToJson(){
+    QJsonObject dataObject;
+    QJsonArray sensorsArray;
+
+    for (Sensor* sensor : all_sensors) {
+        sensorsArray.append(sensor->sensorToJson());
+    }
+
+    dataObject["sensors"] = sensorsArray;
+    return dataObject;
+}
+
+
+
+
+void Sensor_manager::loadDataFromJson(QFile& file) {
+    /*
+    // CONTROLLER
+    QFile file(filename);
+    if (!file.open(QIODevice::ReadOnly)) {
+        // Errore se non è possibile aprire il file
+        qWarning() << "Impossibile aprire il file per la lettura:" << file.errorString();
+        return;
+    }
+*/
+    // Leggi i dati JSON dal file
+    QByteArray jsonData = file.readAll();
+    file.close();
+    QJsonDocument loadDoc(QJsonDocument::fromJson(jsonData));
+    QJsonObject dataObject = loadDoc.object();
+
+    QJsonArray sensorsArray = dataObject["sensors"].toArray();
+
+    for (const QJsonValue& sensorValue : sensorsArray) {
+        all_sensors.append(Sensor_generator::jsonToSensor(sensorValue));
+
+    }
+
+}
+

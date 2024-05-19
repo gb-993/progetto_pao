@@ -1,7 +1,16 @@
 #ifndef SENSOR_HUMIDITY_H
 #define SENSOR_HUMIDITY_H
 
-#include "sensor.h"
+#include <QString>
+#include <QList>
+#include <QPointF>
+#include <QWidget>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QDebug>
+#include <QRandomGenerator>
+#include <QJsonValue>
+#include <sensor.h>
 
 class Sensor_humidity: public virtual Sensor {
     Q_OBJECT
@@ -20,6 +29,9 @@ public:
     void print_sensor() const;
 
     void genSimulation();
+
+    QJsonObject sensorToJson();
+    Sensor_humidity* jsonToSensor(const QJsonValue&);
 };
 
 #endif // SENSOR_HUMIDITY_H
