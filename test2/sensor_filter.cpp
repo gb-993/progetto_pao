@@ -40,13 +40,17 @@ void Sensor_filter::genSimulation() {
 
 // applicato su un sensore, return un QJsonObject che è un singolo sensore in formato json
 QJsonObject Sensor_filter::sensorToJson(){
+
     // creo l'oggetto json che contiene i campi del sensore (name, type, id, simulationData)
+    /*
     QJsonObject sensorObject;
     sensorObject["id"] = getId();
     sensorObject["name"] = getName();
     sensorObject["type"] = getType();
     sensorObject["environment"] = getEnv();
+    */
 
+    QJsonObject sensorObject = Sensor::sensorToJsonCommonField();
     sensorObject["filterChanged"] = getFil();
 
     if (has_simulation_data()) {

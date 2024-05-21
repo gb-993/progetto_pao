@@ -45,8 +45,9 @@ public:
     virtual void print_sensor() const;
 
     // metodi serializzazione
+    QJsonObject sensorToJsonCommonField();
     virtual QJsonObject sensorToJson() =0;
-    static Sensor* jsonToSensor(const QJsonValue&); // ancora da implementare
+    static Sensor* jsonToSensor(const QJsonValue&);
 
 
     virtual ~Sensor() {}

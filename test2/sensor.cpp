@@ -70,3 +70,11 @@ void Sensor::print_sensor() const {
     }
 }
 
+QJsonObject Sensor::sensorToJsonCommonField(){
+    QJsonObject sensorObject;
+    sensorObject["id"] = getId();
+    sensorObject["name"] = getName();
+    sensorObject["type"] = getType();
+    sensorObject["environment"] = getEnv();
+    return sensorObject;
+}

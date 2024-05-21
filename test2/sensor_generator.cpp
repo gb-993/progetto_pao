@@ -29,7 +29,7 @@ Sensor* Sensor_generator::jsonToSensor(const QJsonValue& sensorValue){
     }
 
 
-    if (type == "humidity"){     //---> probabilmente non va bene perchè non li trova
+    if (type == "humidity"){
         double lower = sensorObject["lower"].toDouble();
         double upper = sensorObject["upper"].toDouble();
         Sensor_humidity* sensor = new Sensor_humidity(name, type, environment, lower, upper );
@@ -38,7 +38,7 @@ Sensor* Sensor_generator::jsonToSensor(const QJsonValue& sensorValue){
 
 
     }
-    else if (type == "filter"){     //---> probabilmente non va bene perchè non li trova
+    else if (type == "filter"){
         int filterChanged = sensorObject["filterChanged"].toInt();
         Sensor_filter* sensor = new Sensor_filter(name, type, environment, filterChanged );
         sensor->setSimulationData(simulationData);
@@ -46,7 +46,7 @@ Sensor* Sensor_generator::jsonToSensor(const QJsonValue& sensorValue){
 
 
     }
-    else if (type == "light"){     //---> probabilmente non va bene perchè non li trova
+    else if (type == "light"){
         bool status = sensorObject["status"].toBool();
         Sensor_light* sensor = new Sensor_light(name, type, environment, status );
         sensor->setSimulationData(simulationData);
@@ -54,7 +54,7 @@ Sensor* Sensor_generator::jsonToSensor(const QJsonValue& sensorValue){
 
 
     }
-    else if (type == "temperature"){     //---> probabilmente non va bene perchè non li trova
+    else if (type == "temperature"){
         double lower = sensorObject["lower"].toDouble();
         double upper = sensorObject["upper"].toDouble();
         Sensor_temperature* sensor = new Sensor_temperature(name, type, environment, lower, upper );
@@ -63,7 +63,7 @@ Sensor* Sensor_generator::jsonToSensor(const QJsonValue& sensorValue){
 
 
     }
-    else if (type == "volume"){     //---> probabilmente non va bene perchè non li trova
+    else if (type == "volume"){
         double upper = sensorObject["upper"].toDouble();
         Sensor_volume* sensor = new Sensor_volume(name, type, environment, upper );
         sensor->setSimulationData(simulationData);
