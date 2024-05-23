@@ -1,12 +1,12 @@
-#include "mainwindow.h"
-#include "sensor.h"
-#include "sensor_light.h"
-#include "sensor_humidity.h"
-#include "sensor_temperature.h"
-#include "sensor_volume.h"
-#include "sensor_filter.h"
-#include "sensor_manager.h"
-#include "controller.h"
+#include "View/mainwindow.h"
+#include "Model/sensor.h"
+#include "Model/sensor_light.h"
+#include "Model/sensor_humidity.h"
+#include "Model/sensor_temperature.h"
+#include "Model/sensor_volume.h"
+#include "Model/sensor_filter.h"
+#include "Model/sensor_manager.h"
+#include "Controller/controller.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
