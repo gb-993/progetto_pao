@@ -1,4 +1,4 @@
-#include <sensor_generator.h>
+#include "sensor_generator.h"
 
 Sensor* Sensor_generator::jsonToSensor(const QJsonValue& sensorValue){
     // SENSOR <- RICEVE QUESTO "SENSOR VALUE"
