@@ -6,7 +6,7 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 
-class ConfirmDeleteWindow: public QWidget {
+class ConfirmDeleteWindow: public QDialog {
     Q_OBJECT
 private:
     QLabel *label;

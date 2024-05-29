@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include "modify_sensor_window.h"
+#include "confirm_delete_window.h"
 
 class SensorOptions: public QWidget {
     Q_OBJECT
@@ -12,6 +14,8 @@ private:
     QPushButton* modify;
     QPushButton* deleteButton;
     QPushButton* start_simulation;
+    ModifySensorWindow* modifyWindow;
+    ConfirmDeleteWindow* confirmWindow;
 public:
     SensorOptions();
 };

@@ -22,26 +22,25 @@ SensorsListLayout::SensorsListLayout(): sensorsLabel(new QLabel("Create a sensor
     //layout->addStretch();
 
     setLayout(layout);
-    addButton("Ciao");
-    addButton("Cb");
-    addButton("Tvb");
-    layout->addStretch(); // serve per visualizzarli uno sotto lìaltro ma non troppo distanti..soluzione temporanea
 
     connect(searchBar, &QLineEdit::textChanged, this, &SensorsListLayout::searchTextChanged);
-    // Aggiungo icona
-    /*QPixmap pixmap("C:/Users/cater/OneDrive/Desktop/Uni/Secondoanno/P2/DocumentiProgetto/test6/icon_searchBar.png"); // Percorso dell'immagine dell'icona
-    QIcon icon(pixmap);
-    searchBar->addAction(icon, QLineEdit::LeadingPosition); // Imposta l'icona nella posizione di sinistra*/
 }
 
-void SensorsListLayout::addButton(QString s) {
+void SensorsListLayout::addButton(Sensor* s) {
     sensorsLabel->hide();
 
-    QPushButton* button = new QPushButton(s);
+    CustomButton* button = new CustomButton("Id: " + QString::number(s->getId()) + "  Name: " + s->getName()); // DISTRUZIONE????
     button->setStyleSheet("background-color: white; color: #000080; font-size: 14px;");
     layout->addWidget(button);
-
+    layout->addStretch();
     setLayout(layout);
+
+    //connect(button, &QPushButton::clicked, this, &SensorsListLayout::showInfo);
+    connect(button, &QPushButton::clicked, [this,s](){this->showInfo(s);});
+}
+
+void SensorsListLayout::showInfo(Sensor* s){
+    emit showInfoSignal(s);
 }
 
 void SensorsListLayout::searchTextChanged(const QString &text) {

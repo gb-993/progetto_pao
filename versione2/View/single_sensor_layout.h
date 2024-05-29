@@ -20,10 +20,8 @@ private:
     InfoLayout* info;
     ChartsLayout* chart;
 public:
-    SingleSensorLayout();
-    void setUpOptions(); // DA METTERE NEL CONTROLLER???? booohhhhhh oppure il controller chiama questa funzione
-    // quando seleziono un singolo sensore?
-    // probabilmente si altrimenti non ho accesso ai campi privati
+    SingleSensorLayout(SensorOptions*, InfoLayout*, ChartsLayout*, QWidget* parent = nullptr);
+    void setUpOptions(Sensor*);
 };
 
 #endif // SINGLE_SENSOR_LAYOUT_H

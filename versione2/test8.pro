@@ -17,7 +17,7 @@ SOURCES += \
     View/confirm_delete_window.cpp \
     Controller/controller.cpp \
     View/create_sensor_window.cpp \
-    View/general_window.cpp \
+    View/custom_button.cpp \
     View/info_layout.cpp \
     main.cpp \
     View/mainwindow.cpp \
@@ -43,7 +43,7 @@ HEADERS += \
     View/confirm_delete_window.h \
     Controller/controller.h \
     View/create_sensor_window.h \
-    View/general_window.h \
+    View/custom_button.h \
     View/info_layout.h \
     View/mainwindow.h \
     View/modify_sensor_window.h \

@@ -14,7 +14,7 @@
 #include "../Model/sensor_volume.h"
 #include "sensor_modify_visitor.h"
 
-class ModifySensorWindow: public QWidget {
+class ModifySensorWindow: public QDialog {
     Q_OBJECT
 private:
     QLabel *label;

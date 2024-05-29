@@ -1,7 +1,13 @@
 #include "single_sensor_layout.h"
 
-SingleSensorLayout::SingleSensorLayout(): containerWidget(new QWidget()), mainLayout(new QVBoxLayout(this)), sensorLabel(new QLabel("Select a single sensor")), layout(new QHBoxLayout()), option(new SensorOptions()), rightLayout(new QVBoxLayout()), info(new InfoLayout()), chart(new ChartsLayout()) {
+SingleSensorLayout::SingleSensorLayout(SensorOptions* so, InfoLayout* in, ChartsLayout* ch, QWidget* parent):
+    option(so), info(in), chart(ch), QWidget(parent) {
     // Setto caratteristiche SensorsListLayout
+    containerWidget = new QWidget();
+    mainLayout = new QVBoxLayout();
+    sensorLabel = new QLabel("Select a single sensor");
+    rightLayout = new QVBoxLayout();
+    layout = new QHBoxLayout();
     containerWidget->setStyleSheet("background-color: #c2c2a3;");
 
     // Setto caratteristiche etichetta
@@ -11,7 +17,12 @@ SingleSensorLayout::SingleSensorLayout(): containerWidget(new QWidget()), mainLa
     // Aggiungo etichetta al layout
     layout->addWidget(sensorLabel);
 
-    setUpOptions();
+    layout->addWidget(option);
+    rightLayout->addWidget(info);
+    rightLayout->addWidget(chart);
+    option->hide();
+    chart->hide();
+    //setUpOptions();
     layout->addLayout(rightLayout);
     //setLayout(layout);
 
@@ -24,16 +35,19 @@ SingleSensorLayout::SingleSensorLayout(): containerWidget(new QWidget()), mainLa
     setLayout(mainLayout);
 }
 
-void SingleSensorLayout::setUpOptions() {
+void SingleSensorLayout::setUpOptions(Sensor* s) {
     // Nascondo l'elemento label
     sensorLabel->hide(); // TROVARE IL MODO DI VISUALIZZARLA QUANDO NON HO PIù SENSOR NELLA PARTE A SINISTRA
 
     // Aggiungo elementi al layout
-    layout->addWidget(option);
-    rightLayout->addWidget(info);
-    rightLayout->addWidget(chart);
+    option->show();
+    info->setUpInfo(s);
+    info->show();
+    chart->setUpChart(s);
+    chart->show();
+
 
     // Imposto il layout --> DECOMMENTO DOPO QUANDO NON LA CHIAMO ALL'INTERNO DEL COSTRUTTORE
-    //setLayout(layout);
+    setLayout(layout);
 }
 

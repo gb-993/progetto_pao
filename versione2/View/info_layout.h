@@ -17,12 +17,15 @@ class InfoLayout: public QWidget {
 private:
     QLabel* label1;
     QLabel* label2;
+    QWidget* label3;
     QHBoxLayout* riga1;
     QHBoxLayout* riga2;
     QVBoxLayout* layout;
     SensorInfoVisitor* visitor;
+    //Sensor* sensor;
 public:
-    InfoLayout();
+    InfoLayout(QWidget* parent = nullptr);
+    void setUpInfo(Sensor*);
 };
 
 #endif // INFO_LAYOUT_H

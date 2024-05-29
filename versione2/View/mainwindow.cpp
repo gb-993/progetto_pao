@@ -1,18 +1,24 @@
 #include "mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), general_window(new GeneralWindow()) {
-    //GeneralWindow* general_window = new GeneralWindow();
-    setCentralWidget(general_window);
+MainWindow::MainWindow(TopLayout* t, SensorsListLayout* sl, SingleSensorLayout* ss, QWidget *parent): top(t), sensors_list(sl), single_sensor(ss), QMainWindow(parent) {
+    this->setWindowTitle("Winery control system");
 
-    ModifySensorWindow* modifica = new ModifySensorWindow();
-    modifica->show(); // se voglio che quando si apra l'esecuzione di 'blocchi' finchè l'utente non ha finito scrivo ->exec()
+    QWidget* centralWidget = new QWidget(this);
+    setCentralWidget(centralWidget);
+    mainLayout = new QVBoxLayout(centralWidget);
 
-    ConfirmDeleteWindow* del = new ConfirmDeleteWindow();
-    del->show(); // stesso discorso di prima con exec()
+    bottomLayout = new QHBoxLayout();
 
-    CreateSensorWindow* crea = new CreateSensorWindow();
-    crea -> show();
+    mainLayout->addWidget(top);
+
+    bottomLayout->addWidget(sensors_list);
+    bottomLayout->addWidget(single_sensor);
+
+    mainLayout->addLayout(bottomLayout);
+
 }
+
+
 
 MainWindow::~MainWindow() {}
 

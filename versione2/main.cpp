@@ -1,21 +1,13 @@
-#include "View/mainwindow.h"
-#include "Model/sensor.h"
-#include "Model/sensor_light.h"
-#include "Model/sensor_humidity.h"
-#include "Model/sensor_temperature.h"
-#include "Model/sensor_volume.h"
-#include "Model/sensor_filter.h"
-#include "Model/sensor_manager.h"
-#include "Controller/controller.h"
 #include <QApplication>
+#include "Controller/controller.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-    w.setWindowTitle("Sistema di controllo cantina");
-    w.showMaximized();
+    //MainWindow w;
+    //w.show();
+    //w.setWindowTitle("Sistema di controllo cantina");
+    //w.showMaximized();
 
     /*
     // test classe Sensor_light
@@ -61,11 +53,13 @@ int main(int argc, char *argv[])
     //sm.print_sensor_list();
     */
 
-    Sensor_manager sm1;
-    Controller c1;
+    //Sensor_manager sm1;
+    Controller controller;
     //c1.func_save(sm, "C:/Users/cater/OneDrive/Desktop/Uni/Secondoanno/P2/DocumentiProgetto/testo.txt");
-    c1.func_load("C:/Users/cater/OneDrive/Desktop/Uni/Secondoanno/P2/DocumentiProgetto/testo.txt", sm1);
-    sm1.print_sensor_list();
+    //c1.func_load("C:/Users/cater/OneDrive/Desktop/Uni/Secondoanno/P2/DocumentiProgetto/testo.txt", sm1);
+    //sm1.print_sensor_list();
+
+
 
     return a.exec();
 }

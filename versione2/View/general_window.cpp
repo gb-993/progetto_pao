@@ -11,3 +11,4 @@ GeneralWindow::GeneralWindow(): mainLayout(new QVBoxLayout()), bottomLayout(new 
 
     setLayout(mainLayout);
 }
+

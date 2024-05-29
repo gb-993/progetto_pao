@@ -2,7 +2,7 @@
 
 CreateSensorWindow::CreateSensorWindow():
     label(new QLabel("Create a sensor:")), textName(new QLineEdit()), menuType(new QComboBox()), textLower(new QComboBox()),
-    textUpper(new QComboBox()), menuEnv(new QComboBox()), menuStatusLight(new QComboBox()), menuFilter(new QComboBox()), saveButton(new QPushButton("Save")),
+    textUpper(new QComboBox()), menuEnv(new QComboBox()), menuStatusLight(new QComboBox()), menuFilter(new QComboBox()), createButton(new QPushButton("Create")),
     cancelButton(new QPushButton("Cancel")), mainLayout(new QVBoxLayout()), specificLayout(new QVBoxLayout()) {
 
     setStyleSheet("background-color: #c2c2a3; color: #000080;");
@@ -10,16 +10,16 @@ CreateSensorWindow::CreateSensorWindow():
 
     textName->setPlaceholderText("Name ...");
 
-    menuEnv->setPlaceholderText("Envrionment ...");
-    menuEnv->addItem("Botte");
-    menuEnv->addItem("Stanza");
+    menuEnv->setPlaceholderText("Environment ...");
+    menuEnv->addItem("Tank");
+    menuEnv->addItem("Room");
 
     menuType->setPlaceholderText("Type ...");
-    menuType->addItem("Luce");
-    menuType->addItem("Filtri cambiati");
-    menuType->addItem("Capacità");
-    menuType->addItem("Temperatura");
-    menuType->addItem("Umidità");
+    menuType->addItem("Light");
+    menuType->addItem("Filter Changed");
+    menuType->addItem("Volume");
+    menuType->addItem("Temperature");
+    menuType->addItem("Humidity");
 
     // Add widgets to specific layout
     specificLayout->addWidget(textLower);
@@ -39,14 +39,15 @@ CreateSensorWindow::CreateSensorWindow():
     // Add specific layout to main layout
     mainLayout->addLayout(specificLayout);
 
-    mainLayout->addWidget(saveButton);
+    mainLayout->addWidget(createButton);
     mainLayout->addWidget(cancelButton);
 
     setLayout(mainLayout);
 
-    setWindowTitle("Crea sensore");
+    setWindowTitle("Create sensor");
 
     connect(menuType, SIGNAL(currentIndexChanged(int)), this, SLOT(updateWidgets()));
+    connect(createButton, &QPushButton::clicked, this, &CreateSensorWindow::createButtonClicked);
 }
 
 void CreateSensorWindow::updateWidgets() {
@@ -56,18 +57,18 @@ void CreateSensorWindow::updateWidgets() {
     menuFilter->hide();
 
     QString sensorType = menuType->currentText();
-    if (sensorType == "Luce") {
+    if (sensorType == "Light") {
         menuStatusLight->setPlaceholderText("Light Status ...");
         menuStatusLight->addItem("0");
         menuStatusLight->addItem("1");
         menuStatusLight->show();
-    } else if (sensorType == "Filtri cambiati") {
+    } else if (sensorType == "Filter Changed") {
         menuFilter->setPlaceholderText("Filter Changed ... ");
         for(int i = 0; i <= 3; ++i){
             menuFilter->addItem(QString::number(i));
         }
         menuFilter->show();
-    } else if (sensorType == "Temperatura") {
+    } else if (sensorType == "Temperature") {
         textUpper->clear();
         textLower->clear();
         textUpper->setPlaceholderText("Max value ...");
@@ -80,7 +81,7 @@ void CreateSensorWindow::updateWidgets() {
         }
         textUpper->show();
         textLower->show();
-    } else if (sensorType == "Umidità"){
+    } else if (sensorType == "Humidity"){
         textUpper->clear();
         textLower->clear();
         textUpper->setPlaceholderText("Max value ...");
@@ -101,5 +102,34 @@ void CreateSensorWindow::updateWidgets() {
         }
         textUpper->show();
     }
+}
+
+void CreateSensorWindow::createButtonClicked(){
+    emit createButtonClickedSignal();
+}
+
+int CreateSensorWindow::getId() const {
+    return 3;
+}
+QString CreateSensorWindow::getName() const {
+    return textName->text();
+}
+QString CreateSensorWindow::getType() const {
+    return menuType->currentText();
+}
+QString CreateSensorWindow::getEnv() const {
+    return menuEnv->currentText();
+}
+int CreateSensorWindow::getFilter() const {
+    return menuFilter->currentText().toInt();
+}
+double CreateSensorWindow::getLower() const {
+    return textLower->currentText().toDouble();
+}
+double CreateSensorWindow::getUpper() const {
+    return textUpper->currentText().toDouble();
+}
+bool CreateSensorWindow::getStatus() const {
+    return textLower->currentText().toInt();
 }
 

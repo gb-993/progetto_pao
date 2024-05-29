@@ -1,6 +1,10 @@
 #include "top_layout.h"
 
-TopLayout::TopLayout(): createButton(new QPushButton("Create Sensor")), uploadButton(new QPushButton("Upload Simulation")), saveButton(new QPushButton("Save")),buttonsLayout(new QHBoxLayout()) {
+TopLayout::TopLayout(): createButton(new QPushButton("Create Sensor")), uploadButton(new QPushButton("Upload Simulation")),
+    saveButton(new QPushButton("Save")), buttonsLayout(new QHBoxLayout()),
+    uploadWindow(new QFileDialog()){
+
+    setFixedHeight(50);
 
     // Setto caratteristiche bottoni
     createButton->setStyleSheet("background-color: white; color: #000080; font-size: 17px;");
@@ -9,7 +13,7 @@ TopLayout::TopLayout(): createButton(new QPushButton("Create Sensor")), uploadBu
     uploadButton->setFixedWidth(200);
     saveButton->setStyleSheet("background-color: white; color: #000080; font-size: 17px;");
     saveButton->setFixedWidth(200);
-    saveButton->setDisabled(true);
+    //saveButton->setDisabled(true);
 
     // Aggiungo bottoni al layout
     buttonsLayout->addWidget(createButton);
@@ -17,10 +21,19 @@ TopLayout::TopLayout(): createButton(new QPushButton("Create Sensor")), uploadBu
     buttonsLayout->addWidget(saveButton);
     buttonsLayout->addStretch(); // Per avere i bottoni a sinistra
 
-    /*containerWidget->setLayout(buttonsLayout);
-    QVBoxLayout* mainLayout = new QVBoxLayout(this);
-    mainLayout->addWidget(containerWidget);*/
-
-
     setLayout(buttonsLayout);
+
+    connect(createButton, &QPushButton::clicked, this, &TopLayout::showCreateWindow);
+    connect(uploadButton, &QPushButton::clicked, uploadWindow, &QFileDialog::exec);
+    // apre solo la finestra
+    connect(saveButton, &QPushButton::clicked, [=]() {
+        QString filePath = QFileDialog::getSaveFileName(uploadWindow, "Salva file", QDir::homePath(), "Tutti i file (*.*)");
+        // Qui puoi gestire il percorso del file selezionato
+    });
 }
+
+void TopLayout::showCreateWindow(){
+    emit showCreateWindowSignal();
+}
+
+

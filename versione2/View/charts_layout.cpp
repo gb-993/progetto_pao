@@ -3,12 +3,17 @@
 //QT_CHARTS_USE_NAMESPACE // Per semplificare l'utilizzo dei namespace
 
 ChartsLayout::ChartsLayout(): layout(new QVBoxLayout()), series(new QLineSeries()), chart(new QChart()),
-    axisX(new QValueAxis()), axisY(new QValueAxis()), chartView(new QChartView(chart)) {
+    axisX(new QValueAxis()), axisY(new QValueAxis()), chartView(new QChartView(chart)) {}
 
-    // intanto creo sensore qua
-    Sensor* s = new Sensor_temperature();
+void ChartsLayout::setUpChart(Sensor* s) {
+
+    if(series){
+        series->clear();
+    }
+
     s->genSimulation();
     QList<QPointF> dati = s->getSimData();
+
 
     for (const QPointF &punto : dati) {
         series->append(punto);
@@ -21,6 +26,11 @@ ChartsLayout::ChartsLayout(): layout(new QVBoxLayout()), series(new QLineSeries(
     chart->addSeries(series);
 
     chart->setTitle("Simulation");
+
+    if(chart){
+        chart->removeAxis(axisX);
+        chart->removeAxis(axisY);
+    }
 
     chart->createDefaultAxes(); // Questo adatta gli assi automaticamente
 

@@ -1,6 +1,8 @@
 #include "sensor_options.h"
 
-SensorOptions::SensorOptions(): buttonsLayout(new QVBoxLayout()), modify(new QPushButton("Modifica")), deleteButton(new QPushButton("Elimina")), start_simulation(new QPushButton("Avvia Simulazione")) {
+SensorOptions::SensorOptions(): buttonsLayout(new QVBoxLayout()), modify(new QPushButton("Modify")),
+    deleteButton(new QPushButton("Delete")), start_simulation(new QPushButton("New Simulation")),
+    modifyWindow(new ModifySensorWindow()), confirmWindow(new ConfirmDeleteWindow()){
     // Setto caratteristiche TopLayout
     setFixedWidth(210);
 
@@ -20,4 +22,7 @@ SensorOptions::SensorOptions(): buttonsLayout(new QVBoxLayout()), modify(new QPu
     buttonsLayout->setAlignment(Qt::AlignHCenter);
 
     setLayout(buttonsLayout);
+
+    connect(modify, &QPushButton::clicked, modifyWindow, &ModifySensorWindow::exec);
+    connect(deleteButton, &QPushButton::clicked, confirmWindow, &ConfirmDeleteWindow::exec);
 }

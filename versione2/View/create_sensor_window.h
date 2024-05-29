@@ -13,7 +13,7 @@
 #include "../Model/sensor_temperature.h"
 #include "../Model/sensor_volume.h"
 
-class CreateSensorWindow: public QWidget {
+class CreateSensorWindow: public QDialog {
     Q_OBJECT
 private:
     QLabel *label;
@@ -24,14 +24,25 @@ private:
     QComboBox *menuEnv;
     QComboBox *menuStatusLight;
     QComboBox *menuFilter;
-    QPushButton *saveButton;
+    QPushButton *createButton;
     QPushButton *cancelButton;
     QVBoxLayout *mainLayout;
     QVBoxLayout* specificLayout;
 private slots:
     void updateWidgets();
+    void createButtonClicked();
+signals:
+    void createButtonClickedSignal();
 public:
     CreateSensorWindow();
+    int getId() const;
+    QString getName() const;
+    QString getType() const;
+    QString getEnv() const;
+    int getFilter() const;
+    double getLower() const;
+    double getUpper() const;
+    bool getStatus() const;
 };
 
 #endif // CREATE_SENSOR_WINDOW_H

@@ -25,6 +25,7 @@ private:
     QChartView *chartView;
 public:
     ChartsLayout();
+    void setUpChart(Sensor*);
 };
 
 #endif // CHARTS_LAYOUT_H
