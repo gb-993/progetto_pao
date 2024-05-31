@@ -23,6 +23,8 @@ SensorOptions::SensorOptions(): buttonsLayout(new QVBoxLayout()), modify(new QPu
     setLayout(buttonsLayout);
 
     //connect(modify, &QPushButton::clicked, modifyWindow, &ModifySensorWindow::exec);
+    //connect(button, &QPushButton::clicked, [this, s](){ this->showInfo(s); });
+
     connect(modify, &QPushButton::clicked, this, &SensorOptions::showModifyWindow);
     connect(deleteButton, &QPushButton::clicked, confirmWindow, &ConfirmDeleteWindow::exec);
 }
@@ -30,4 +32,6 @@ SensorOptions::SensorOptions(): buttonsLayout(new QVBoxLayout()), modify(new QPu
 void SensorOptions::showModifyWindow(){
     emit showModifyWindowSignal();
 }
+
+
 

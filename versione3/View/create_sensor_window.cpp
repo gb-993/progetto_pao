@@ -49,6 +49,18 @@ CreateSensorWindow::CreateSensorWindow():
     connect(menuType, SIGNAL(currentIndexChanged(int)), this, SLOT(updateWidgets()));
     connect(createButton, &QPushButton::clicked, this, &CreateSensorWindow::createButtonClicked);
     connect(cancelButton, &QPushButton::clicked, this, &QWidget::close);
+
+    // Connetti i segnali di modifica ai campi di input
+    connect(textName, &QLineEdit::textChanged, this, &CreateSensorWindow::validateFields);
+    connect(menuEnv, &QComboBox::currentTextChanged, this, &CreateSensorWindow::validateFields);
+    connect(menuType, &QComboBox::currentTextChanged, this, &CreateSensorWindow::validateFields);
+    connect(textLower, &QComboBox::currentTextChanged, this, &CreateSensorWindow::validateFields);
+    connect(textUpper, &QComboBox::currentTextChanged, this, &CreateSensorWindow::validateFields);
+    connect(menuStatusLight, &QComboBox::currentTextChanged, this, &CreateSensorWindow::validateFields);
+    connect(menuFilter, &QComboBox::currentTextChanged, this, &CreateSensorWindow::validateFields);
+
+    // Chiama validateFields inizialmente per disabilitare il pulsante "Create" fino a quando tutti i campi non sono validi
+    validateFields();
 }
 
 void CreateSensorWindow::updateWidgets() {
@@ -131,5 +143,41 @@ double CreateSensorWindow::getUpper() const {
 }
 bool CreateSensorWindow::getStatus() const {
     return textLower->currentText().toInt();
+}
+
+void CreateSensorWindow::resetFields() {
+    textName->clear();
+    menuEnv->setCurrentIndex(-1);
+    menuType->setCurrentIndex(-1);
+    textLower->clear();
+    textUpper->clear();
+    menuStatusLight->setCurrentIndex(-1);
+    menuFilter->setCurrentIndex(-1);
+
+    textLower->hide();
+    textUpper->hide();
+    menuStatusLight->hide();
+    menuFilter->hide();
+
+    validateFields();
+}
+
+void CreateSensorWindow::validateFields() {
+    bool valid = !textName->text().isEmpty()
+                 && !menuEnv->currentText().isEmpty()
+                 && !menuType->currentText().isEmpty();
+
+    QString sensorType = menuType->currentText();
+    if (sensorType == "Light") {
+        valid = valid && !menuStatusLight->currentText().isEmpty();
+    } else if (sensorType == "Filter Changed") {
+        valid = valid && !menuFilter->currentText().isEmpty();
+    } else if (sensorType == "Temperature" || sensorType == "Humidity") {
+        valid = valid && !textLower->currentText().isEmpty() && !textUpper->currentText().isEmpty();
+    } else {
+        valid = valid && !textUpper->currentText().isEmpty();
+    }
+
+    createButton->setEnabled(valid);
 }
 

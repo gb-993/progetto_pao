@@ -40,11 +40,16 @@ void SingleSensorLayout::setUpOptions(Sensor* s) {
     sensorLabel->hide(); // TROVARE IL MODO DI VISUALIZZARLA QUANDO NON HO PIù SENSOR NELLA PARTE A SINISTRA
 
     // Aggiungo elementi al layout
+    //option->setUpButtonOptions(s);
     option->show();
-    option->setUpOptions(s);
+
     info->setUpInfo(s);
     info->show();
-    chart->setUpChart(s);
+
+    if(!s->has_simulation_data()){
+        s->genSimulation();
+    }
+    chart->setUpChart(s->getSimData());
     chart->show();
 
 

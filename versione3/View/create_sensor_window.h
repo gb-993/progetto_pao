@@ -31,6 +31,7 @@ private:
 private slots:
     void updateWidgets();
     void createButtonClicked();
+    void validateFields();
 signals:
     void createButtonClickedSignal();
 public:
@@ -42,6 +43,8 @@ public:
     double getLower() const;
     double getUpper() const;
     bool getStatus() const;
+public slots:
+    void resetFields();
 };
 
 #endif // CREATE_SENSOR_WINDOW_H

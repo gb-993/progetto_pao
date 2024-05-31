@@ -11,8 +11,10 @@ private:
     QString name;
 private slots:
     void showInfo();
+    void setUpModify();
 signals:
     void showInfoSignal();
+    void setUpModifySignal();
 public:
     CustomButton(QString, QPushButton* parent = nullptr);
     QString getName() const;

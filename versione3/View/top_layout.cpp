@@ -36,4 +36,7 @@ void TopLayout::showCreateWindow(){
     emit showCreateWindowSignal();
 }
 
+QPushButton* TopLayout::getSaveButton() {
+    return saveButton;
+}
 

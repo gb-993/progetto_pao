@@ -22,6 +22,7 @@ signals:
     void showCreateWindowSignal();
 public:
     TopLayout();
+    QPushButton* getSaveButton();
 };
 
 #endif // TOP_LAYOUT_H

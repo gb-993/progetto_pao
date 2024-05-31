@@ -36,12 +36,18 @@ void SensorsListLayout::addButton(Sensor* s) {
     button->setStyleSheet("background-color: white; color: #000080; font-size: 14px;");
     buttonsLayout->insertWidget(0, button, 0, Qt::AlignTop);
 
+    //connect(button, &CustomButton::showInfoSignal, [this, s](){ this->showInfo(s); });
     connect(button, &QPushButton::clicked, [this, s](){ this->showInfo(s); });
+    connect(button, &QPushButton::clicked, [this, s](){ this->setModify(s); });  //--------
 }
 
 
 void SensorsListLayout::showInfo(Sensor* s){
     emit showInfoSignal(s);
+}
+
+void SensorsListLayout::setModify(Sensor* s){  //--------
+    emit setModifySignal(s);
 }
 
 void SensorsListLayout::searchTextChanged(const QString &text) {

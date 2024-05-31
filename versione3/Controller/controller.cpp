@@ -14,12 +14,18 @@ Controller::Controller(QObject* parent): QObject(parent) {
 
     mainwindow->showMaximized();
 
+    connect(top, &TopLayout::showCreateWindowSignal, createsensorwindow, &CreateSensorWindow::resetFields);
     connect(top, &TopLayout::showCreateWindowSignal, createsensorwindow, &CreateSensorWindow::exec); //questa non si potrebbe spostare da altre parti? non usa &controller come quanrto paramtero
     connect(createsensorwindow, &CreateSensorWindow::createButtonClickedSignal, this, &Controller::createSensor);
     connect(sensorslist, &SensorsListLayout::showInfoSignal, this, &Controller::showSensorInfo);
+    connect(sensorslist, &SensorsListLayout::setModifySignal, this, &Controller::setUpModify); //--------
+
+    /*connect(option, &SensorOptions::showModifyWindowSignal, [=]() {
+        modifysensorwindow->setUpModify(sensor);
+    });*/
 
     connect(option, &SensorOptions::showModifyWindowSignal, modifysensorwindow, &ModifySensorWindow::exec);
-    connect(option, &SensorOptions::showModifyWindowSignal, modifysensorwindow, &ModifySensorWindow::exec);
+
 }
 
 void Controller::createSensor() {
@@ -44,12 +50,16 @@ void Controller::createSensor() {
         double max = createsensorwindow->getUpper();
         sensor = new Sensor_volume(name,type,env,max);
     }
-    createsensorwindow->hide();
+    createsensorwindow->close();
     sensorslist->addButton(sensor);
+    top->getSaveButton()->setDisabled(false);
 }
 
 void Controller::showSensorInfo(Sensor* s) {
     singlesensor->setUpOptions(s);
+}
+void Controller::setUpModify(Sensor* s) {
+    modifysensorwindow->setUpModify(s);
 }
 
 void Controller::func_save(Sensor_manager& sm1, const QString& filename){
