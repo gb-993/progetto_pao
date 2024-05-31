@@ -40,7 +40,9 @@ private:
 private slots:
     void createSensor(); // crea un sensore, chiamata dalla signal della CreateSensorWindow
     void showSensorInfo(Sensor*);
-    void setUpModify(Sensor*); //--------
+    void getSensor(Sensor*); //--------
+    void modifySensor(Sensor*); // crea un sensore, chiamata dalla signal della CreateSensorWindow
+
 public:
     Controller(QObject* parent = nullptr);
 

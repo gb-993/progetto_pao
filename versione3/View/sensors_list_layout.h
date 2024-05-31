@@ -24,10 +24,10 @@ private:
 private slots:
     void searchTextChanged(const QString&);
     void showInfo(Sensor*);
-    void setModify(Sensor*); //--------
+    void sendSensor(Sensor*); //--------
 signals:
     void showInfoSignal(Sensor*);
-    void setModifySignal(Sensor*); //--------
+    void sendSensorSignal(Sensor*); //--------
 public:
     SensorsListLayout();
     void addButton(Sensor*);

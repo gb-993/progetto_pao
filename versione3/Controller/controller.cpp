@@ -18,13 +18,16 @@ Controller::Controller(QObject* parent): QObject(parent) {
     connect(top, &TopLayout::showCreateWindowSignal, createsensorwindow, &CreateSensorWindow::exec); //questa non si potrebbe spostare da altre parti? non usa &controller come quanrto paramtero
     connect(createsensorwindow, &CreateSensorWindow::createButtonClickedSignal, this, &Controller::createSensor);
     connect(sensorslist, &SensorsListLayout::showInfoSignal, this, &Controller::showSensorInfo);
-    connect(sensorslist, &SensorsListLayout::setModifySignal, this, &Controller::setUpModify); //--------
+    connect(sensorslist, &SensorsListLayout::sendSensorSignal, this, &Controller::getSensor);
+    //connect(sensorslist, &SensorsListLayout::setModifySignal, this, &Controller::setUpModify); //--------
 
     /*connect(option, &SensorOptions::showModifyWindowSignal, [=]() {
         modifysensorwindow->setUpModify(sensor);
     });*/
 
     connect(option, &SensorOptions::showModifyWindowSignal, modifysensorwindow, &ModifySensorWindow::exec);
+    // SU QUESTA IL MIO SENGALE DOVREBBE PASSARMI UN SENSORE MA COME FACCIO? VEDI MODIFY SENSOR WINDOW PER CAPIRE DA DOVE ARRIVA IL SEGNALE
+    connect(modifysensorwindow, &ModifySensorWindow::saveButtonClickedSignal, this, &Controller::modifySensor);
 
 }
 
@@ -55,10 +58,14 @@ void Controller::createSensor() {
     top->getSaveButton()->setDisabled(false);
 }
 
+void Controller::createSensor(Sensor* s) {
+
+}
+
 void Controller::showSensorInfo(Sensor* s) {
     singlesensor->setUpOptions(s);
 }
-void Controller::setUpModify(Sensor* s) {
+void Controller::getSensor(Sensor* s) { //-------
     modifysensorwindow->setUpModify(s);
 }
 

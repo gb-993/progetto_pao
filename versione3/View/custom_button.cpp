@@ -4,15 +4,15 @@ CustomButton::CustomButton(QString n, QPushButton* parent): name(n), QPushButton
     this->setText(name);
 
     connect(this, &CustomButton::clicked, this, &CustomButton::showInfo);
-    connect(this, &CustomButton::clicked, this, &CustomButton::setUpModify);
+    //connect(this, &CustomButton::clicked, this, &CustomButton::setUpModify);
 }
 
 void CustomButton::showInfo() {
     emit showInfoSignal();
 }
-void CustomButton::setUpModify() {
+/*void CustomButton::setUpModify() {
     emit setUpModifySignal();
-}
+}*/
 
 
 QString CustomButton::getName() const{

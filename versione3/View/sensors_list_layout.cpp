@@ -38,7 +38,7 @@ void SensorsListLayout::addButton(Sensor* s) {
 
     //connect(button, &CustomButton::showInfoSignal, [this, s](){ this->showInfo(s); });
     connect(button, &QPushButton::clicked, [this, s](){ this->showInfo(s); });
-    connect(button, &QPushButton::clicked, [this, s](){ this->setModify(s); });  //--------
+    connect(button, &QPushButton::clicked, [this, s](){ this->sendSensor(s); });  //--------
 }
 
 
@@ -46,8 +46,8 @@ void SensorsListLayout::showInfo(Sensor* s){
     emit showInfoSignal(s);
 }
 
-void SensorsListLayout::setModify(Sensor* s){  //--------
-    emit setModifySignal(s);
+void SensorsListLayout::sendSensor(Sensor* s){  //--------
+    emit sendSensorSignal(s);
 }
 
 void SensorsListLayout::searchTextChanged(const QString &text) {

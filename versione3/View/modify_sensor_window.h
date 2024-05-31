@@ -27,9 +27,16 @@ private:
     QPushButton *saveButton;
     QPushButton *cancelButton;
     QVBoxLayout *mainLayout;
+    QVBoxLayout *buttonLayout;
+    QVBoxLayout *settingsLayout;
     SensorModifyVisitor* visitor;
     QComboBox* menu;
     QComboBox* menu2;
+private slots:
+    void saveButtonClicked();
+signals:
+    void saveButtonClickedSignals();
+
 public:
     ModifySensorWindow(QDialog* parent = nullptr);
     void setUpModify(Sensor*);
