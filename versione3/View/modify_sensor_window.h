@@ -19,11 +19,7 @@ class ModifySensorWindow: public QDialog {
 private:
     QLabel *label;
     QLineEdit *textName;
-    QLineEdit *textLower;
-    QLineEdit *textUpper;
     QComboBox *menuEnv;
-    QComboBox *menuStatusLight;
-    QComboBox *menuFilter;
     QPushButton *saveButton;
     QPushButton *cancelButton;
     QVBoxLayout *mainLayout;
@@ -33,13 +29,16 @@ private:
     QComboBox* menu;
     QComboBox* menu2;
 private slots:
-    void saveButtonClicked();
+    void saveButtonClicked(Sensor*);
 signals:
-    void saveButtonClickedSignals();
-
+    void saveButtonClickedSignal(Sensor*);
 public:
     ModifySensorWindow(QDialog* parent = nullptr);
     void setUpModify(Sensor*);
+    QString getName() const;
+    QString getEnv() const;
+    QString getMenu() const;
+    QString getMenu2() const;
 };
 
 #endif // MODIFY_SENSOR_WINDOW_H

@@ -3,11 +3,7 @@
 ModifySensorWindow::ModifySensorWindow(QDialog* parent): QDialog(parent){
     label = new QLabel("Modify sensor: ");
     textName = new QLineEdit();
-    textLower = new QLineEdit();
-    textUpper = new QLineEdit();
     menuEnv = new QComboBox();
-    menuStatusLight = new QComboBox();
-    menuFilter = new QComboBox();
     saveButton = new QPushButton("Save");
     cancelButton = new QPushButton("Cancel");
     settingsLayout = new QVBoxLayout();
@@ -19,7 +15,7 @@ ModifySensorWindow::ModifySensorWindow(QDialog* parent): QDialog(parent){
 
     setStyleSheet("background-color: #c2c2a3; color: #000080;");
     resize(400, 200);
-    setWindowTitle("Modifica sensore");
+    setWindowTitle("Modify sensor");
 
     textName->setPlaceholderText("Change name");
     menuEnv->setPlaceholderText("Change environment");
@@ -38,8 +34,6 @@ ModifySensorWindow::ModifySensorWindow(QDialog* parent): QDialog(parent){
 
     setLayout(mainLayout);
 
-    // COME FACCIO A PASSARGLI IL SENSORE SE LO RICEVO SOLO SU SETUPMODIFY????
-    connect(saveButton, &QPushButton::clicked, this, &ModifySensorWindow::saveButtonClicked);
     connect(cancelButton, &QPushButton::clicked, this, &QWidget::close);
 }
 
@@ -58,8 +52,23 @@ void ModifySensorWindow::setUpModify(Sensor* s) {
 
     settingsLayout->addWidget(menu);
     settingsLayout->addWidget(menu2);
+
+    connect(saveButton, &QPushButton::clicked, [this, s](){ this->saveButtonClicked(s);});
 }
 
-void ModifySensorWindow::saveButtonClicked(){
-    emit saveButtonClickedSignal();
+void ModifySensorWindow::saveButtonClicked(Sensor* s){
+    emit saveButtonClickedSignal(s);
+}
+
+QString ModifySensorWindow::getName() const {
+    return textName->text();
+}
+QString ModifySensorWindow::getEnv() const {
+    return menuEnv->currentText();
+}
+QString ModifySensorWindow::getMenu() const {
+    return menu->currentText();
+}
+QString ModifySensorWindow::getMenu2() const {
+    return menu2->currentText();
 }

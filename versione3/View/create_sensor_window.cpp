@@ -142,7 +142,7 @@ double CreateSensorWindow::getUpper() const {
     return textUpper->currentText().toDouble();
 }
 bool CreateSensorWindow::getStatus() const {
-    return textLower->currentText().toInt();
+    return menuStatusLight->currentText().toInt();
 }
 
 void CreateSensorWindow::resetFields() {

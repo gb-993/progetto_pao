@@ -58,8 +58,17 @@ void Controller::createSensor() {
     top->getSaveButton()->setDisabled(false);
 }
 
-void Controller::createSensor(Sensor* s) {
+void Controller::modifySensor(Sensor* s) {
+    s->setName(modifysensorwindow->getName());
+    s->setEnv(modifysensorwindow->getEnv());
 
+    // NON VA --> FARE VISITOR
+    if(dynamic_cast<Sensor_light*>(s)){
+        //s = static_cast<Sensor_light*>(s);
+        s->setStatus(modifysensorwindow->getMenu().toInt());
+        s->print_sensor();
+    }
+    modifysensorwindow->close();
 }
 
 void Controller::showSensorInfo(Sensor* s) {
