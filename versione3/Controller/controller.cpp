@@ -1,7 +1,6 @@
 #include "controller.h"
 
 Controller::Controller(QObject* parent): QObject(parent) {
-
     chart = new ChartsLayout();
     info = new InfoLayout();
     option = new SensorOptions();
@@ -14,6 +13,11 @@ Controller::Controller(QObject* parent): QObject(parent) {
 
     mainwindow->showMaximized();
 
+    disconnect(top, &TopLayout::showCreateWindowSignal, createsensorwindow, &CreateSensorWindow::resetFields);
+    disconnect(top, &TopLayout::showCreateWindowSignal, createsensorwindow, &CreateSensorWindow::exec); //questa non si potrebbe spostare da altre parti? non usa &controller come quanrto paramtero
+    disconnect(createsensorwindow, &CreateSensorWindow::createButtonClickedSignal, this, &Controller::createSensor);
+    disconnect(sensorslist, &SensorsListLayout::showInfoSignal, this, &Controller::showSensorInfo);
+    disconnect(sensorslist, &SensorsListLayout::sendSensorSignal, this, &Controller::getSensor);
     connect(top, &TopLayout::showCreateWindowSignal, createsensorwindow, &CreateSensorWindow::resetFields);
     connect(top, &TopLayout::showCreateWindowSignal, createsensorwindow, &CreateSensorWindow::exec); //questa non si potrebbe spostare da altre parti? non usa &controller come quanrto paramtero
     connect(createsensorwindow, &CreateSensorWindow::createButtonClickedSignal, this, &Controller::createSensor);
@@ -25,6 +29,8 @@ Controller::Controller(QObject* parent): QObject(parent) {
         modifysensorwindow->setUpModify(sensor);
     });*/
 
+    disconnect(option, &SensorOptions::showModifyWindowSignal, modifysensorwindow, &ModifySensorWindow::exec);
+    disconnect(modifysensorwindow, &ModifySensorWindow::saveButtonClickedSignal, this, &Controller::modifySensor);
     connect(option, &SensorOptions::showModifyWindowSignal, modifysensorwindow, &ModifySensorWindow::exec);
     // SU QUESTA IL MIO SENGALE DOVREBBE PASSARMI UN SENSORE MA COME FACCIO? VEDI MODIFY SENSOR WINDOW PER CAPIRE DA DOVE ARRIVA IL SEGNALE
     connect(modifysensorwindow, &ModifySensorWindow::saveButtonClickedSignal, this, &Controller::modifySensor);
@@ -35,6 +41,7 @@ void Controller::createSensor() {
     QString name = createsensorwindow->getName();
     QString env = createsensorwindow->getEnv();
     QString type = createsensorwindow->getType();
+    Sensor* sensor;
     if (type == "Light") {
         bool status = createsensorwindow->getStatus();
         sensor = new Sensor_light(name,type,env,status);
@@ -59,15 +66,14 @@ void Controller::createSensor() {
 }
 
 void Controller::modifySensor(Sensor* s) {
-    s->setName(modifysensorwindow->getName());
-    s->setEnv(modifysensorwindow->getEnv());
+    if(modifysensorwindow->getName() != "")
+        s->setName(modifysensorwindow->getName());
+    if(modifysensorwindow->getEnv() != "")
+        s->setEnv(modifysensorwindow->getEnv());
 
-    // NON VA --> FARE VISITOR
-    if(dynamic_cast<Sensor_light*>(s)){
-        //s = static_cast<Sensor_light*>(s);
-        s->setStatus(modifysensorwindow->getMenu().toInt());
-        s->print_sensor();
-    }
+    visitor = new SensorControllerVisitor(modifysensorwindow->getMenu(), modifysensorwindow->getMenu2());
+    s->accept(*visitor);
+
     modifysensorwindow->close();
 }
 

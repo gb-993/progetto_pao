@@ -45,7 +45,6 @@ void Sensor::setEnv(const QString& e) {
     environment = e;
     notifyObservers(*this);
 }
-
 void Sensor::setSimulationData(const QList<QPointF>& p){
     simulationData.append(p);
     notifyObservers(*this);

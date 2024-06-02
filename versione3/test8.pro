@@ -13,6 +13,7 @@ INCLUDEPATH += .
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Controller/sensor_controller_visitor.cpp \
     View/charts_layout.cpp \
     View/confirm_delete_window.cpp \
     Controller/controller.cpp \
@@ -39,6 +40,7 @@ SOURCES += \
 
 
 HEADERS += \
+    Controller/sensor_controller_visitor.h \
     View/charts_layout.h \
     View/confirm_delete_window.h \
     Controller/controller.h \

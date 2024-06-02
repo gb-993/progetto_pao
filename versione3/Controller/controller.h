@@ -22,6 +22,7 @@
 #include "../Model/sensor_humidity.h"
 #include "../Model/sensor_temperature.h"
 #include "../Model/sensor_volume.h"
+#include "sensor_controller_visitor.h"
 
 class Controller: public QObject {
     Q_OBJECT
@@ -37,6 +38,7 @@ private:
     InfoLayout* info;
     ChartsLayout* chart;
     ModifySensorWindow* modifysensorwindow;
+    SensorControllerVisitor* visitor;
 private slots:
     void createSensor(); // crea un sensore, chiamata dalla signal della CreateSensorWindow
     void showSensorInfo(Sensor*);

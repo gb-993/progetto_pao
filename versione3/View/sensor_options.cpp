@@ -25,6 +25,8 @@ SensorOptions::SensorOptions(): buttonsLayout(new QVBoxLayout()), modify(new QPu
     //connect(modify, &QPushButton::clicked, modifyWindow, &ModifySensorWindow::exec);
     //connect(button, &QPushButton::clicked, [this, s](){ this->showInfo(s); });
 
+    disconnect(modify, &QPushButton::clicked, this, &SensorOptions::showModifyWindow);
+    disconnect(deleteButton, &QPushButton::clicked, confirmWindow, &ConfirmDeleteWindow::exec);
     connect(modify, &QPushButton::clicked, this, &SensorOptions::showModifyWindow);
     connect(deleteButton, &QPushButton::clicked, confirmWindow, &ConfirmDeleteWindow::exec);
 }

@@ -4,7 +4,7 @@ ModifySensorWindow::ModifySensorWindow(QDialog* parent): QDialog(parent){
     label = new QLabel("Modify sensor: ");
     textName = new QLineEdit();
     menuEnv = new QComboBox();
-    saveButton = new QPushButton("Save");
+    saveButton = new CustomButton("Save", nullptr);
     cancelButton = new QPushButton("Cancel");
     settingsLayout = new QVBoxLayout();
     mainLayout = new QVBoxLayout();
@@ -34,10 +34,14 @@ ModifySensorWindow::ModifySensorWindow(QDialog* parent): QDialog(parent){
 
     setLayout(mainLayout);
 
+    disconnect(cancelButton, &QPushButton::clicked, this, &QWidget::close);
     connect(cancelButton, &QPushButton::clicked, this, &QWidget::close);
+    disconnect(saveButton, &CustomButton::clicked, this, &ModifySensorWindow::cleanFields);
+    connect(saveButton, &CustomButton::clicked, this, &ModifySensorWindow::cleanFields);
 }
 
 void ModifySensorWindow::setUpModify(Sensor* s) {
+    saveButton->setSensor(s);
 
     s->accept(*visitor);
 
@@ -53,7 +57,15 @@ void ModifySensorWindow::setUpModify(Sensor* s) {
     settingsLayout->addWidget(menu);
     settingsLayout->addWidget(menu2);
 
-    connect(saveButton, &QPushButton::clicked, [this, s](){ this->saveButtonClicked(s);});
+    disconnect(saveButton, &CustomButton::buttonClickedSignal, this, &ModifySensorWindow::saveButtonClicked);
+    connect(saveButton, &CustomButton::buttonClickedSignal, this, &ModifySensorWindow::saveButtonClicked);
+}
+
+void ModifySensorWindow::cleanFields() {
+    textName->clear();
+    menuEnv->setCurrentIndex(-1);
+    menu->setCurrentIndex(-1);
+    menu2->setCurrentIndex(-1);
 }
 
 void ModifySensorWindow::saveButtonClicked(Sensor* s){

@@ -12,12 +12,12 @@
 #include "../Model/sensor_volume.h"
 #include "sensor_info_visitor.h"
 
-class InfoLayout: public QWidget {
+class InfoLayout: public QWidget, public Sensor_observer_interface {
     Q_OBJECT
 private:
     QLabel* label1;
     QLabel* label2;
-    QWidget* label3;
+    QLabel* label3;
     QHBoxLayout* riga1;
     QHBoxLayout* riga2;
     QVBoxLayout* layout;
@@ -25,6 +25,7 @@ private:
 public:
     InfoLayout(QWidget* parent = nullptr);
     void setUpInfo(Sensor*);
+    virtual void notify(Sensor&);
 };
 
 #endif // INFO_LAYOUT_H

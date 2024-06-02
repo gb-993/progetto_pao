@@ -1,8 +1,7 @@
-#ifndef SENSOR_INFO_VISITOR_H
-#define SENSOR_INFO_VISITOR_H
+#ifndef SENSOR_CONTROLLER_VISITOR_H
+#define SENSOR_CONTROLLER_VISITOR_H
 
 #include <QWidget>
-#include <QLabel>
 #include "../Model/sensor_visitor_interface.h"
 #include "../Model/sensor_light.h"
 #include "../Model/sensor_filter.h"
@@ -10,13 +9,13 @@
 #include "../Model/sensor_temperature.h"
 #include "../Model/sensor_volume.h"
 
-class SensorInfoVisitor: public SensorVisitorInterface {
+class SensorControllerVisitor: public SensorVisitorInterface {
 private:
-    QLabel* label;
-
+    QString menu;
+    QString menu2;
 public:
-    SensorInfoVisitor();
-    QLabel* getLabel();
+    SensorControllerVisitor(QString, QString);
+    //QLabel* getLabel();
     void visitLight(Sensor_light&);
     void visitTemperature(Sensor_temperature&);
     void visitHumidity(Sensor_humidity&);
@@ -24,4 +23,4 @@ public:
     void visitFilter(Sensor_filter&);
 };
 
-#endif // SENSOR_INFO_VISITOR_H
+#endif // SENSOR_CONTROLLER_VISITOR_H

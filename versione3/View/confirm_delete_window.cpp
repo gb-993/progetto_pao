@@ -13,5 +13,6 @@ ConfirmDeleteWindow::ConfirmDeleteWindow(): label(new QLabel("Do you want to del
 
     setWindowTitle("Delete sensor");
 
+    disconnect(backButton, &QPushButton::clicked, this, &QWidget::close);
     connect(backButton, &QPushButton::clicked, this, &QWidget::close);
 }

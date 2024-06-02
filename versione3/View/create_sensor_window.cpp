@@ -46,11 +46,21 @@ CreateSensorWindow::CreateSensorWindow():
 
     setWindowTitle("Create sensor");
 
+    disconnect(menuType, SIGNAL(currentIndexChanged(int)), this, SLOT(updateWidgets()));
+    disconnect(createButton, &QPushButton::clicked, this, &CreateSensorWindow::createButtonClicked);
+    disconnect(cancelButton, &QPushButton::clicked, this, &QWidget::close);
     connect(menuType, SIGNAL(currentIndexChanged(int)), this, SLOT(updateWidgets()));
     connect(createButton, &QPushButton::clicked, this, &CreateSensorWindow::createButtonClicked);
     connect(cancelButton, &QPushButton::clicked, this, &QWidget::close);
 
     // Connetti i segnali di modifica ai campi di input
+    disconnect(textName, &QLineEdit::textChanged, this, &CreateSensorWindow::validateFields);
+    disconnect(menuEnv, &QComboBox::currentTextChanged, this, &CreateSensorWindow::validateFields);
+    disconnect(menuType, &QComboBox::currentTextChanged, this, &CreateSensorWindow::validateFields);
+    disconnect(textLower, &QComboBox::currentTextChanged, this, &CreateSensorWindow::validateFields);
+    disconnect(textUpper, &QComboBox::currentTextChanged, this, &CreateSensorWindow::validateFields);
+    disconnect(menuStatusLight, &QComboBox::currentTextChanged, this, &CreateSensorWindow::validateFields);
+    disconnect(menuFilter, &QComboBox::currentTextChanged, this, &CreateSensorWindow::validateFields);
     connect(textName, &QLineEdit::textChanged, this, &CreateSensorWindow::validateFields);
     connect(menuEnv, &QComboBox::currentTextChanged, this, &CreateSensorWindow::validateFields);
     connect(menuType, &QComboBox::currentTextChanged, this, &CreateSensorWindow::validateFields);

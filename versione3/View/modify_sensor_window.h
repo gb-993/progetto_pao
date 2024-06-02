@@ -13,6 +13,7 @@
 #include "../Model/sensor_temperature.h"
 #include "../Model/sensor_volume.h"
 #include "sensor_modify_visitor.h"
+#include "custom_button.h"
 
 class ModifySensorWindow: public QDialog {
     Q_OBJECT
@@ -20,7 +21,7 @@ private:
     QLabel *label;
     QLineEdit *textName;
     QComboBox *menuEnv;
-    QPushButton *saveButton;
+    CustomButton *saveButton;
     QPushButton *cancelButton;
     QVBoxLayout *mainLayout;
     QVBoxLayout *buttonLayout;
@@ -30,6 +31,7 @@ private:
     QComboBox* menu2;
 private slots:
     void saveButtonClicked(Sensor*);
+    void cleanFields();
 signals:
     void saveButtonClickedSignal(Sensor*);
 public:

@@ -23,6 +23,8 @@ TopLayout::TopLayout(): createButton(new QPushButton("Create Sensor")), uploadBu
 
     setLayout(buttonsLayout);
 
+    disconnect(createButton, &QPushButton::clicked, this, &TopLayout::showCreateWindow);
+    disconnect(uploadButton, &QPushButton::clicked, uploadWindow, &QFileDialog::exec);
     connect(createButton, &QPushButton::clicked, this, &TopLayout::showCreateWindow);
     connect(uploadButton, &QPushButton::clicked, uploadWindow, &QFileDialog::exec);
     // apre solo la finestra
@@ -36,7 +38,7 @@ void TopLayout::showCreateWindow(){
     emit showCreateWindowSignal();
 }
 
-QPushButton* TopLayout::getSaveButton() {
+QPushButton* TopLayout::getSaveButton(){
     return saveButton;
 }
 

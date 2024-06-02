@@ -1,20 +1,33 @@
 #include "custom_button.h"
 
-CustomButton::CustomButton(QString n, QPushButton* parent): name(n), QPushButton(parent) {
+CustomButton::CustomButton(QString n, Sensor* s, QPushButton* parent): name(n), sensor(s), QPushButton(parent) {
     this->setText(name);
 
-    connect(this, &CustomButton::clicked, this, &CustomButton::showInfo);
+    // se faccio questa crasha WTFFFF
+    //id = sensor->getId();
+
+    disconnect(this, &CustomButton::clicked, this, &CustomButton::buttonClicked);
+    connect(this, &CustomButton::clicked, this, &CustomButton::buttonClicked);
+    //connect(this, &CustomButton::clicked, this, &CustomButton::showInfo);
     //connect(this, &CustomButton::clicked, this, &CustomButton::setUpModify);
 }
 
-void CustomButton::showInfo() {
-    emit showInfoSignal();
+void CustomButton::buttonClicked() {
+    emit buttonClickedSignal(sensor);
 }
-/*void CustomButton::setUpModify() {
-    emit setUpModifySignal();
-}*/
 
+void CustomButton::setSensor(Sensor* s) {
+    sensor = s;
+}
 
-QString CustomButton::getName() const{
-    return name;
+Sensor& CustomButton::getSensor() const {
+    return *sensor;
+}
+
+int CustomButton::getId() const {
+    return id;
+}
+
+void CustomButton::setName(QString s) {
+    name = s;
 }

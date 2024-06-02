@@ -54,6 +54,6 @@ void SingleSensorLayout::setUpOptions(Sensor* s) {
 
 
     // Imposto il layout --> DECOMMENTO DOPO QUANDO NON LA CHIAMO ALL'INTERNO DEL COSTRUTTORE
-    setLayout(layout);
+    //setLayout(layout);
 }
 

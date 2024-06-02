@@ -14,13 +14,14 @@
 #include "../Model/sensor_temperature.h"
 #include "../Model/sensor_volume.h"
 
-class SensorsListLayout: public QWidget {
+class SensorsListLayout: public QWidget, public Sensor_observer_interface  {
     Q_OBJECT
 private:
     QLabel *sensorsLabel;
     QLineEdit *searchBar;
     QVBoxLayout *layout;
     QVBoxLayout *buttonsLayout;
+    QList<CustomButton*> buttonsList;
 private slots:
     void searchTextChanged(const QString&);
     void showInfo(Sensor*);
@@ -31,7 +32,7 @@ signals:
 public:
     SensorsListLayout();
     void addButton(Sensor*);
-
+    virtual void notify(Sensor&);
 };
 
 #endif // SENSORS_LIST_LAYOUT_H
