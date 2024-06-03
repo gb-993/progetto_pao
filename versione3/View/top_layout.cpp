@@ -6,7 +6,6 @@ TopLayout::TopLayout(): createButton(new QPushButton("Create Sensor")), uploadBu
 
     setFixedHeight(50);
 
-    // Setto caratteristiche bottoni
     createButton->setStyleSheet("background-color: white; color: #000080; font-size: 17px;");
     createButton->setFixedWidth(200);
     uploadButton->setStyleSheet("background-color: white; color: #000080; font-size: 17px;");
@@ -15,16 +14,16 @@ TopLayout::TopLayout(): createButton(new QPushButton("Create Sensor")), uploadBu
     saveButton->setFixedWidth(200);
     saveButton->setDisabled(true);
 
-    // Aggiungo bottoni al layout
     buttonsLayout->addWidget(createButton);
     buttonsLayout->addWidget(uploadButton);
     buttonsLayout->addWidget(saveButton);
-    buttonsLayout->addStretch(); // Per avere i bottoni a sinistra
+    buttonsLayout->addStretch();
 
     setLayout(buttonsLayout);
 
     disconnect(createButton, &QPushButton::clicked, this, &TopLayout::showCreateWindow);
     disconnect(uploadButton, &QPushButton::clicked, uploadWindow, &QFileDialog::exec);
+
     connect(createButton, &QPushButton::clicked, this, &TopLayout::showCreateWindow);
     connect(uploadButton, &QPushButton::clicked, uploadWindow, &QFileDialog::exec);
     // apre solo la finestra

@@ -1,7 +1,7 @@
 #include "sensor_options.h"
 
 SensorOptions::SensorOptions(): buttonsLayout(new QVBoxLayout()), modify(new QPushButton("Modify")),
-    deleteButton(new QPushButton("Delete")), start_simulation(new QPushButton("New Simulation")), confirmWindow(new ConfirmDeleteWindow()){
+    deleteButton(new QPushButton("Delete")), start_simulation(new CustomButton("New Simulation", nullptr)) {
     // Setto caratteristiche TopLayout
     setFixedWidth(210);
 
@@ -22,17 +22,29 @@ SensorOptions::SensorOptions(): buttonsLayout(new QVBoxLayout()), modify(new QPu
 
     setLayout(buttonsLayout);
 
-    //connect(modify, &QPushButton::clicked, modifyWindow, &ModifySensorWindow::exec);
-    //connect(button, &QPushButton::clicked, [this, s](){ this->showInfo(s); });
-
     disconnect(modify, &QPushButton::clicked, this, &SensorOptions::showModifyWindow);
-    disconnect(deleteButton, &QPushButton::clicked, confirmWindow, &ConfirmDeleteWindow::exec);
+    disconnect(deleteButton, &QPushButton::clicked, this, &SensorOptions::showDeleteWindow);
+    disconnect(start_simulation, &CustomButton::buttonClickedSignal, this, &SensorOptions::startNewSimulation);
+
     connect(modify, &QPushButton::clicked, this, &SensorOptions::showModifyWindow);
-    connect(deleteButton, &QPushButton::clicked, confirmWindow, &ConfirmDeleteWindow::exec);
+    connect(deleteButton, &QPushButton::clicked, this, &SensorOptions::showDeleteWindow);
+    connect(start_simulation, &CustomButton::buttonClickedSignal, this, &SensorOptions::startNewSimulation);
 }
 
-void SensorOptions::showModifyWindow(){
+void SensorOptions::setUpButtonOptions(Sensor* s) {
+    start_simulation->setSensor(s);
+}
+
+void SensorOptions::showModifyWindow() {
     emit showModifyWindowSignal();
+}
+
+void SensorOptions::showDeleteWindow() {
+    emit showDeleteWindowSignal();
+}
+
+void SensorOptions::startNewSimulation(Sensor* s) {
+    emit startNewSimulationSignal(s);
 }
 
 

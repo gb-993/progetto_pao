@@ -15,7 +15,6 @@ private:
     QString menu2;
 public:
     SensorControllerVisitor(QString, QString);
-    //QLabel* getLabel();
     void visitLight(Sensor_light&);
     void visitTemperature(Sensor_temperature&);
     void visitHumidity(Sensor_humidity&);

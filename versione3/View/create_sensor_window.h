@@ -7,11 +7,6 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QLineEdit>
-#include "../Model/sensor_light.h"
-#include "../Model/sensor_filter.h"
-#include "../Model/sensor_humidity.h"
-#include "../Model/sensor_temperature.h"
-#include "../Model/sensor_volume.h"
 
 class CreateSensorWindow: public QDialog {
     Q_OBJECT

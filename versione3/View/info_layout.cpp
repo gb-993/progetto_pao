@@ -34,7 +34,7 @@ void InfoLayout::setUpInfo(Sensor* s){
     label3 = visitor->getLabel();
     layout->addWidget(label3);
 
-    // TROVARE MODO PER NON FARLO AGGIUNGERE OGNI VOLTA CHE VIENE CHIAMATA SETUPINFO
+    // TROVARE MODO PER NON FARLO AGGIUNGERE OGNI VOLTA CHE VIENE CHIAMATA SETUPINFO !!!!!!!!!!!!!
     s->addObserver(this);
 }
 

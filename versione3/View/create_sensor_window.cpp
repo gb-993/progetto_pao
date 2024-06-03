@@ -21,7 +21,6 @@ CreateSensorWindow::CreateSensorWindow():
     menuType->addItem("Temperature");
     menuType->addItem("Humidity");
 
-    // Add widgets to specific layout
     specificLayout->addWidget(textLower);
     specificLayout->addWidget(textUpper);
     specificLayout->addWidget(menuStatusLight);
@@ -36,9 +35,7 @@ CreateSensorWindow::CreateSensorWindow():
     mainLayout->addWidget(menuEnv);
     mainLayout->addWidget(menuType);
 
-    // Add specific layout to main layout
     mainLayout->addLayout(specificLayout);
-
     mainLayout->addWidget(createButton);
     mainLayout->addWidget(cancelButton);
 
@@ -49,11 +46,6 @@ CreateSensorWindow::CreateSensorWindow():
     disconnect(menuType, SIGNAL(currentIndexChanged(int)), this, SLOT(updateWidgets()));
     disconnect(createButton, &QPushButton::clicked, this, &CreateSensorWindow::createButtonClicked);
     disconnect(cancelButton, &QPushButton::clicked, this, &QWidget::close);
-    connect(menuType, SIGNAL(currentIndexChanged(int)), this, SLOT(updateWidgets()));
-    connect(createButton, &QPushButton::clicked, this, &CreateSensorWindow::createButtonClicked);
-    connect(cancelButton, &QPushButton::clicked, this, &QWidget::close);
-
-    // Connetti i segnali di modifica ai campi di input
     disconnect(textName, &QLineEdit::textChanged, this, &CreateSensorWindow::validateFields);
     disconnect(menuEnv, &QComboBox::currentTextChanged, this, &CreateSensorWindow::validateFields);
     disconnect(menuType, &QComboBox::currentTextChanged, this, &CreateSensorWindow::validateFields);
@@ -61,6 +53,10 @@ CreateSensorWindow::CreateSensorWindow():
     disconnect(textUpper, &QComboBox::currentTextChanged, this, &CreateSensorWindow::validateFields);
     disconnect(menuStatusLight, &QComboBox::currentTextChanged, this, &CreateSensorWindow::validateFields);
     disconnect(menuFilter, &QComboBox::currentTextChanged, this, &CreateSensorWindow::validateFields);
+
+    connect(menuType, SIGNAL(currentIndexChanged(int)), this, SLOT(updateWidgets()));
+    connect(createButton, &QPushButton::clicked, this, &CreateSensorWindow::createButtonClicked);
+    connect(cancelButton, &QPushButton::clicked, this, &QWidget::close);
     connect(textName, &QLineEdit::textChanged, this, &CreateSensorWindow::validateFields);
     connect(menuEnv, &QComboBox::currentTextChanged, this, &CreateSensorWindow::validateFields);
     connect(menuType, &QComboBox::currentTextChanged, this, &CreateSensorWindow::validateFields);
@@ -69,7 +65,6 @@ CreateSensorWindow::CreateSensorWindow():
     connect(menuStatusLight, &QComboBox::currentTextChanged, this, &CreateSensorWindow::validateFields);
     connect(menuFilter, &QComboBox::currentTextChanged, this, &CreateSensorWindow::validateFields);
 
-    // Chiama validateFields inizialmente per disabilitare il pulsante "Create" fino a quando tutti i campi non sono validi
     validateFields();
 }
 

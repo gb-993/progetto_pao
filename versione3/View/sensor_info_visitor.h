@@ -13,7 +13,6 @@
 class SensorInfoVisitor: public SensorVisitorInterface {
 private:
     QLabel* label;
-
 public:
     SensorInfoVisitor();
     QLabel* getLabel();

@@ -16,6 +16,7 @@
 #include "../View/info_layout.h"
 #include "../View/charts_layout.h"
 #include "../View/modify_sensor_window.h"
+#include "../View/confirm_delete_window.h"
 #include "../Model/sensor_manager.h"
 #include "../Model/sensor_light.h"
 #include "../Model/sensor_filter.h"
@@ -38,21 +39,21 @@ private:
     InfoLayout* info;
     ChartsLayout* chart;
     ModifySensorWindow* modifysensorwindow;
+    ConfirmDeleteWindow* confirmwindow;
     SensorControllerVisitor* visitor;
 private slots:
-    void createSensor(); // crea un sensore, chiamata dalla signal della CreateSensorWindow
+    void createSensor();
     void showSensorInfo(Sensor*);
-    void getSensor(Sensor*); //--------
-    void modifySensor(Sensor*); // crea un sensore, chiamata dalla signal della CreateSensorWindow
-
+    void getSensor(Sensor*);
+    void modifySensor(Sensor*);
+    void newSimulation(Sensor*);
 public:
     Controller(QObject* parent = nullptr);
 
     void func_save(Sensor_manager& ,const QString& );
     void func_load(const QString&, Sensor_manager& );
 
-    // distruttore
-    virtual ~Controller() {}
+    virtual ~Controller() {} // ??????
 };
 
 

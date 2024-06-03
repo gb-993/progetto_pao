@@ -10,6 +10,7 @@ Controller::Controller(QObject* parent): QObject(parent) {
     mainwindow = new MainWindow(top, sensorslist, singlesensor);
     createsensorwindow = new CreateSensorWindow();
     modifysensorwindow = new ModifySensorWindow();
+    confirmwindow = new ConfirmDeleteWindow();
 
     mainwindow->showMaximized();
 
@@ -18,23 +19,20 @@ Controller::Controller(QObject* parent): QObject(parent) {
     disconnect(createsensorwindow, &CreateSensorWindow::createButtonClickedSignal, this, &Controller::createSensor);
     disconnect(sensorslist, &SensorsListLayout::showInfoSignal, this, &Controller::showSensorInfo);
     disconnect(sensorslist, &SensorsListLayout::sendSensorSignal, this, &Controller::getSensor);
+    disconnect(option, &SensorOptions::showDeleteWindowSignal, confirmwindow, &ConfirmDeleteWindow::exec);
+    disconnect(option, &SensorOptions::showModifyWindowSignal, modifysensorwindow, &ModifySensorWindow::exec);
+    disconnect(modifysensorwindow, &ModifySensorWindow::saveButtonClickedSignal, this, &Controller::modifySensor);
+    disconnect(option, &SensorOptions::startNewSimulationSignal, this, &Controller::newSimulation);
+
     connect(top, &TopLayout::showCreateWindowSignal, createsensorwindow, &CreateSensorWindow::resetFields);
     connect(top, &TopLayout::showCreateWindowSignal, createsensorwindow, &CreateSensorWindow::exec); //questa non si potrebbe spostare da altre parti? non usa &controller come quanrto paramtero
     connect(createsensorwindow, &CreateSensorWindow::createButtonClickedSignal, this, &Controller::createSensor);
     connect(sensorslist, &SensorsListLayout::showInfoSignal, this, &Controller::showSensorInfo);
     connect(sensorslist, &SensorsListLayout::sendSensorSignal, this, &Controller::getSensor);
-    //connect(sensorslist, &SensorsListLayout::setModifySignal, this, &Controller::setUpModify); //--------
-
-    /*connect(option, &SensorOptions::showModifyWindowSignal, [=]() {
-        modifysensorwindow->setUpModify(sensor);
-    });*/
-
-    disconnect(option, &SensorOptions::showModifyWindowSignal, modifysensorwindow, &ModifySensorWindow::exec);
-    disconnect(modifysensorwindow, &ModifySensorWindow::saveButtonClickedSignal, this, &Controller::modifySensor);
+    connect(option, &SensorOptions::showDeleteWindowSignal, confirmwindow, &ConfirmDeleteWindow::exec);
     connect(option, &SensorOptions::showModifyWindowSignal, modifysensorwindow, &ModifySensorWindow::exec);
-    // SU QUESTA IL MIO SENGALE DOVREBBE PASSARMI UN SENSORE MA COME FACCIO? VEDI MODIFY SENSOR WINDOW PER CAPIRE DA DOVE ARRIVA IL SEGNALE
     connect(modifysensorwindow, &ModifySensorWindow::saveButtonClickedSignal, this, &Controller::modifySensor);
-
+    connect(option, &SensorOptions::startNewSimulationSignal, this, &Controller::newSimulation);
 }
 
 void Controller::createSensor() {
@@ -80,8 +78,13 @@ void Controller::modifySensor(Sensor* s) {
 void Controller::showSensorInfo(Sensor* s) {
     singlesensor->setUpOptions(s);
 }
-void Controller::getSensor(Sensor* s) { //-------
+void Controller::getSensor(Sensor* s) {
     modifysensorwindow->setUpModify(s);
+}
+
+void Controller::newSimulation(Sensor* s) {
+    s->genSimulation();
+    chart->setUpChart(s->getSimData());
 }
 
 void Controller::func_save(Sensor_manager& sm1, const QString& filename){

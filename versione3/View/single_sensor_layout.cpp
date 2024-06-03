@@ -1,8 +1,8 @@
 #include "single_sensor_layout.h"
+#include "sensor_options.h"
 
 SingleSensorLayout::SingleSensorLayout(SensorOptions* so, InfoLayout* in, ChartsLayout* ch, QWidget* parent):
     option(so), info(in), chart(ch), QWidget(parent) {
-    // Setto caratteristiche SensorsListLayout
     containerWidget = new QWidget();
     mainLayout = new QVBoxLayout();
     sensorLabel = new QLabel("Select a single sensor");
@@ -10,11 +10,9 @@ SingleSensorLayout::SingleSensorLayout(SensorOptions* so, InfoLayout* in, Charts
     layout = new QHBoxLayout();
     containerWidget->setStyleSheet("background-color: #c2c2a3;");
 
-    // Setto caratteristiche etichetta
-    sensorLabel->setStyleSheet("color: #000080; font-size: 18px;"); // Imposta il colore del testo su verde e la dimensione del carattere a 16px
-    sensorLabel->setAlignment(Qt::AlignCenter); // Allinea il testo al centro
+    sensorLabel->setStyleSheet("color: #000080; font-size: 18px;");
+    sensorLabel->setAlignment(Qt::AlignCenter);
 
-    // Aggiungo etichetta al layout
     layout->addWidget(sensorLabel);
 
     layout->addWidget(option);
@@ -22,25 +20,19 @@ SingleSensorLayout::SingleSensorLayout(SensorOptions* so, InfoLayout* in, Charts
     rightLayout->addWidget(chart);
     option->hide();
     chart->hide();
-    //setUpOptions();
     layout->addLayout(rightLayout);
-    //setLayout(layout);
 
-    // Impostare il layout del widget contenitore
     containerWidget->setLayout(layout);
 
-    // Impostare il layout principale del SingleSensorLayout
     mainLayout->addWidget(containerWidget);
 
     setLayout(mainLayout);
 }
 
 void SingleSensorLayout::setUpOptions(Sensor* s) {
-    // Nascondo l'elemento label
     sensorLabel->hide(); // TROVARE IL MODO DI VISUALIZZARLA QUANDO NON HO PIù SENSOR NELLA PARTE A SINISTRA
 
-    // Aggiungo elementi al layout
-    //option->setUpButtonOptions(s);
+    option->setUpButtonOptions(s);
     option->show();
 
     info->setUpInfo(s);
@@ -52,8 +44,5 @@ void SingleSensorLayout::setUpOptions(Sensor* s) {
     chart->setUpChart(s->getSimData());
     chart->show();
 
-
-    // Imposto il layout --> DECOMMENTO DOPO QUANDO NON LA CHIAMO ALL'INTERNO DEL COSTRUTTORE
-    //setLayout(layout);
 }
 

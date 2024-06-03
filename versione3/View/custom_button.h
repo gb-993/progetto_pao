@@ -15,20 +15,13 @@ class CustomButton: public QPushButton{
 private:
     QString name;
     Sensor* sensor;
-    int id;
 private slots:
-    //void showInfo();
-    //void setUpModify();
     void buttonClicked();
 signals:
-    //void showInfoSignal();
-    //void setUpModifySignal();
     void buttonClickedSignal(Sensor*);
 public:
     CustomButton(QString, Sensor*, QPushButton* parent = nullptr);
-    //QString getName() const;
     void setSensor(Sensor*);
-    void setName(QString);
     Sensor& getSensor() const;
     int getId() const;
 };

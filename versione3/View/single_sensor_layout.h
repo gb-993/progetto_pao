@@ -4,9 +4,15 @@
 #include <QWidget>
 #include <QLabel>
 #include <QHBoxLayout>
-#include "sensor_options.h"
+#include "../Model/sensor_light.h"
+#include "../Model/sensor_filter.h"
+#include "../Model/sensor_humidity.h"
+#include "../Model/sensor_temperature.h"
+#include "../Model/sensor_volume.h"
+
 #include "info_layout.h"
 #include "charts_layout.h"
+#include "sensor_options.h"
 
 class SingleSensorLayout: public QWidget{
     Q_OBJECT

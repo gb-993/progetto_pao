@@ -2,11 +2,6 @@
 
 SensorControllerVisitor::SensorControllerVisitor(QString m, QString m2): menu(m), menu2(m2)  {}
 
-/*
-QLabel* SensorControllerVisitor::getLabel() {
-    return label;
-}*/
-
 void SensorControllerVisitor::visitLight(Sensor_light& light) {
     if(menu != "")
         light.setStatus(menu.toInt());

@@ -35,9 +35,10 @@ ModifySensorWindow::ModifySensorWindow(QDialog* parent): QDialog(parent){
     setLayout(mainLayout);
 
     disconnect(cancelButton, &QPushButton::clicked, this, &QWidget::close);
-    connect(cancelButton, &QPushButton::clicked, this, &QWidget::close);
     disconnect(saveButton, &CustomButton::clicked, this, &ModifySensorWindow::cleanFields);
+
     connect(saveButton, &CustomButton::clicked, this, &ModifySensorWindow::cleanFields);
+    connect(cancelButton, &QPushButton::clicked, this, &QWidget::close);
 }
 
 void ModifySensorWindow::setUpModify(Sensor* s) {
