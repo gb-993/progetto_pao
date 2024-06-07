@@ -88,11 +88,8 @@ void Controller::modifySensor(Sensor* s) {
 }
 
 void Controller::deleteSensor(Sensor* s) {
-    QList<CustomButton*>* bl = sensorslist->getButtonsList();
-    for (auto it = bl->begin(); it != bl->end(); ++it) {
-        sensorslist->removeOneButton(*it);
-        clearButton(*it);
-    }
+    sensorslist->clearLayout();
+    sensorslist->getButtonsList()->clear();
     /*
     QList<CustomButton*>* bl = sensorslist->getButtonsList();
 
@@ -185,7 +182,6 @@ void Controller::func_load(const QString& filename, Sensor_manager& sm1){
 }
 
 void Controller::refresh() {
-    sensorslist->clearLayout();
     //QList<CustomButton*> buttonsList = sensorslist->getButtonsList();
     /*for(auto &one_button : buttonsList){
         buttonsList.removeOne(one_button);
