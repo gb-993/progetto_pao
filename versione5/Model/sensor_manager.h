@@ -21,6 +21,7 @@ public:
     // Funzioni per la gestione dei sensori
     void addSensor(Sensor *sensor);
     void removeSensor(Sensor *sensor);
+    void removeAllSensor();
     void print_sensor_list();
 
     // serializer out

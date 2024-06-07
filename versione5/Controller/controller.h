@@ -54,8 +54,8 @@ private slots:
 public:
     Controller(QObject* parent = nullptr);
 
-    void func_save(Sensor_manager& ,const QString& );
-    void func_load(const QString&, Sensor_manager& );
+    void func_save(const QString&);
+    void func_load(const QString&);
 
     void clearButton(CustomButton*);
     void refresh();

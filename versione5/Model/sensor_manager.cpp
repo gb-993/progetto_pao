@@ -9,16 +9,26 @@ Sensor_manager::Sensor_manager() {
 }
 
 void Sensor_manager::addSensor(Sensor *sensor) {
-    //if (sensor)
-        all_sensors.append(sensor);
+    all_sensors.append(sensor);
 }
 
 void Sensor_manager::removeSensor(Sensor *sensor) {
     if (sensor)
-        all_sensors.removeOne(sensor); // removeOne rimuove la prima occorrenza trovata --> INFORMARMI
+        all_sensors.removeOne(sensor);
 }
 
-// ATTENZIONE: controllare se serve copia profonda o no
+void Sensor_manager::removeAllSensor() {
+    if(all_sensors.isEmpty()) {
+        return;
+    }else{
+        for (Sensor* sensor : all_sensors) {
+            all_sensors.removeOne(sensor);
+            delete sensor;
+            sensor = nullptr;
+        }
+    }
+}
+
 QList<Sensor*> Sensor_manager::getSensors() const {
     return all_sensors;
 }

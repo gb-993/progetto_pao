@@ -68,8 +68,8 @@ void Sensor::print_sensor() const {
 
 void Sensor::addObserver(Sensor_observer_interface *obs) {
     if (obs == nullptr) return;
-    if (std::find(observers.begin(), observers.end(), obs) != observers.end()) return; // se l'osservatore è già presente non lo aggiungo
-    observers.push_back(obs); // aggiungo osservatore alla lista
+    if (std::find(observers.begin(), observers.end(), obs) != observers.end()) return;
+    observers.push_back(obs);
 }
 void Sensor::notifyObservers(Sensor& s){
     for(auto obs=observers.begin(); obs!=observers.end(); obs++){

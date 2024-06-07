@@ -88,35 +88,6 @@ void Controller::modifySensor(Sensor* s) {
 }
 
 void Controller::deleteSensor(Sensor* s) {
-    sensorslist->clearLayout();
-    sensorslist->getButtonsList()->clear();
-    /*
-    QList<CustomButton*>* bl = sensorslist->getButtonsList();
-
-    for (auto it = bl->begin(); it != bl->end(); ) {
-        CustomButton* button = *it;
-        if (button->getSensor()->getId() == s->getId()) {
-            // Rimuovi il pulsante dalla lista
-            sensorslist->removeOneButton(button);
-            //bl->removeOne(button);
-            //it = bl->erase(it); // erase restituisce il prossimo iteratore valido
-            // Elimina il pulsante
-            delete button;
-            button = nullptr;
-        } else {
-            ++it; // Passa all'elemento successivo
-        }
-    }
-
-    /*
-    for(auto button: ???) {
-        if(button->getSensor()->getId() == s->getId()){
-            sensorslist->removeOneButton(button);
-            delete button;
-            button = nullptr;
-        }
-    }*/
-
     sm->removeSensor(s);
     delete s;
     s = nullptr;
@@ -148,58 +119,50 @@ void Controller::newSimulation(Sensor* s) {
 void Controller::openSaveWindow() {
     QString fileName = QFileDialog::getSaveFileName(nullptr, "Save JSON File", "", "JSON Files (*.json);;All Files (*)");
     if (!fileName.isEmpty()) {
-        func_save(*sm, fileName);
+        func_save(fileName);
     }
 }
 
 void Controller::openLoadWindow() {
     QString fileName = QFileDialog::getOpenFileName(nullptr, "Open JSON File", "", "JSON Files (*.json);;All Files (*)");
     if (!fileName.isEmpty()) {
-        func_load(fileName, *sm);
+        sm->removeAllSensor();
+        func_load(fileName);
         refresh();
     }
 }
 
-void Controller::func_save(Sensor_manager& sm1, const QString& filename){
+void Controller::func_save(const QString& filename){
     QFile file(filename);
     if (!file.open(QIODevice::WriteOnly)) {
         qWarning() << "Impossibile aprire il file per la scrittura:" << file.errorString();
         return;
     }
-    QJsonDocument saveDoc(sm1.sensorListToJson());
+    QJsonDocument saveDoc(sm->sensorListToJson());
     file.write(saveDoc.toJson());
     file.close();
 }
 
-void Controller::func_load(const QString& filename, Sensor_manager& sm1){
+void Controller::func_load(const QString& filename){
     QFile file(filename);
     if (!file.open(QIODevice::ReadOnly)) {
         // Errore se non è possibile aprire il file
         qWarning() << "Impossibile aprire il file per la lettura:" << file.errorString();
         return;
     }
-    sm1.loadDataFromJson(file);
+    sm->loadDataFromJson(file);
+    top->getSaveButton()->setDisabled(false);
 }
 
 void Controller::refresh() {
-    //QList<CustomButton*> buttonsList = sensorslist->getButtonsList();
-    /*for(auto &one_button : buttonsList){
-        buttonsList.removeOne(one_button);
-        clearButton(one_button);
-    }*/
-
-
-    /*for (CustomButton* button : buttonsList) {
-        sensorslist->printListTest();
-        clearButton(button); // Clear each button
-        sensorslist->printListTest();
-    }
-    buttonsList.clear();*/
+    sensorslist->clearLayout();
+    sensorslist->getButtonsList()->clear();
 
     QList<Sensor*> sensors = sm->getSensors();
 
     if(sensors.empty()){
         sensorslist->getLabel()->show();
+        top->getSaveButton()->setDisabled(true);
         info->hide();
         option->hide();
         chart->hide();
@@ -209,30 +172,9 @@ void Controller::refresh() {
             sensorslist->addButton(one_sensor);
         }
     }
-
-    if(sensors.isEmpty()) {
-        qDebug() <<"Lista vuota";
-    }else{
-        qDebug() << "Sensori nella lista:";
-        for (Sensor* sensor : sensors) {
-            sensor->print_sensor();
-        }
-    }
-
-    /*
-    QList<Sensor*> lista = sm->getSensors();
-    if(lista.isEmpty()) {
-        qDebug() <<"Lista vuota";
-    }else{
-        qDebug() << "Sensori nella lista:";
-        for (Sensor* sensor : lista) {
-            sensor->print_sensor();
-        }
-    }*/
 }
 
 void Controller::clearButton(CustomButton* button) {
-    //button->deleteSensorPointer();
     delete button;
     button = nullptr;
 }
