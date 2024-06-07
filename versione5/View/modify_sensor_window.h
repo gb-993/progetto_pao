@@ -30,7 +30,7 @@ private:
     QComboBox* menu;
     QComboBox* menu2;
 private slots:
-    void saveButtonClicked(Sensor*);
+    void saveButtonClicked(QPointer<Sensor>);
     void cleanFields();
 signals:
     void saveButtonClickedSignal(Sensor*);

@@ -88,6 +88,38 @@ void Controller::modifySensor(Sensor* s) {
 }
 
 void Controller::deleteSensor(Sensor* s) {
+    QList<CustomButton*>* bl = sensorslist->getButtonsList();
+    for (auto it = bl->begin(); it != bl->end(); ++it) {
+        sensorslist->removeOneButton(*it);
+        clearButton(*it);
+    }
+    /*
+    QList<CustomButton*>* bl = sensorslist->getButtonsList();
+
+    for (auto it = bl->begin(); it != bl->end(); ) {
+        CustomButton* button = *it;
+        if (button->getSensor()->getId() == s->getId()) {
+            // Rimuovi il pulsante dalla lista
+            sensorslist->removeOneButton(button);
+            //bl->removeOne(button);
+            //it = bl->erase(it); // erase restituisce il prossimo iteratore valido
+            // Elimina il pulsante
+            delete button;
+            button = nullptr;
+        } else {
+            ++it; // Passa all'elemento successivo
+        }
+    }
+
+    /*
+    for(auto button: ???) {
+        if(button->getSensor()->getId() == s->getId()){
+            sensorslist->removeOneButton(button);
+            delete button;
+            button = nullptr;
+        }
+    }*/
+
     sm->removeSensor(s);
     delete s;
     s = nullptr;
@@ -154,31 +186,45 @@ void Controller::func_load(const QString& filename, Sensor_manager& sm1){
 
 void Controller::refresh() {
     sensorslist->clearLayout();
-    QList<CustomButton*> buttonsList = sensorslist->getButtonsList();
+    //QList<CustomButton*> buttonsList = sensorslist->getButtonsList();
     /*for(auto &one_button : buttonsList){
         buttonsList.removeOne(one_button);
         clearButton(one_button);
     }*/
 
-    for (CustomButton* button : buttonsList) {
+
+    /*for (CustomButton* button : buttonsList) {
+        sensorslist->printListTest();
         clearButton(button); // Clear each button
+        sensorslist->printListTest();
     }
-    buttonsList.clear();
+    buttonsList.clear();*/
 
     QList<Sensor*> sensors = sm->getSensors();
-    for (auto &one_sensor : sensors) {
-        sensorslist->addButton(one_sensor);
-    }
 
-    if(sm->getSensors().empty()){
+    if(sensors.empty()){
         sensorslist->getLabel()->show();
         info->hide();
         option->hide();
         chart->hide();
         singlesensor->getLabel()->show();
+    } else {
+        for (auto &one_sensor : sensors) {
+            sensorslist->addButton(one_sensor);
+        }
     }
 
-    /*QList<Sensor*> lista = sm->getSensors();
+    if(sensors.isEmpty()) {
+        qDebug() <<"Lista vuota";
+    }else{
+        qDebug() << "Sensori nella lista:";
+        for (Sensor* sensor : sensors) {
+            sensor->print_sensor();
+        }
+    }
+
+    /*
+    QList<Sensor*> lista = sm->getSensors();
     if(lista.isEmpty()) {
         qDebug() <<"Lista vuota";
     }else{
@@ -190,7 +236,7 @@ void Controller::refresh() {
 }
 
 void Controller::clearButton(CustomButton* button) {
-    button->deleteSensorPointer();
+    //button->deleteSensorPointer();
     delete button;
     button = nullptr;
 }

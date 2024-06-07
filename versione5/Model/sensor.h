@@ -14,7 +14,7 @@
 #include "sensor_observer_interface.h"
 #include "sensor_visitor_interface.h"
 
-class Sensor {
+class Sensor: public QObject {
 private:
     int id;
     QString name;

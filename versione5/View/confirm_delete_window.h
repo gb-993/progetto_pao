@@ -20,7 +20,7 @@ private:
     QPushButton* backButton;
     QVBoxLayout* layout;
 private slots:
-    void deleteButtonClicked(Sensor*);
+    void deleteButtonClicked(QPointer<Sensor>);
 signals:
     void deleteButtonClickedSignal(Sensor*);
 public:

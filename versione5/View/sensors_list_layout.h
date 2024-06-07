@@ -24,8 +24,8 @@ private:
     QList<CustomButton*> buttonsList;
 private slots:
     void searchTextChanged(const QString&);
-    void showInfo(Sensor*);
-    void sendSensor(Sensor*);
+    void showInfo(QPointer<Sensor>);
+    void sendSensor(QPointer<Sensor>);
 signals:
     void showInfoSignal(Sensor*);
     void sendSensorSignal(Sensor*);
@@ -34,8 +34,10 @@ public:
     void addButton(Sensor*);
     virtual void notify(Sensor&);
     void clearLayout();
-    QList<CustomButton*> getButtonsList() const;
+    QList<CustomButton*>* getButtonsList();
     QLabel* getLabel() const;
+    void printListTest() const;
+    void removeOneButton(CustomButton*);
 };
 
 #endif // SENSORS_LIST_LAYOUT_H

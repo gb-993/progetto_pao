@@ -43,7 +43,7 @@ void SensorOptions::showDeleteWindow() {
     emit showDeleteWindowSignal();
 }
 
-void SensorOptions::startNewSimulation(Sensor* s) {
+void SensorOptions::startNewSimulation(QPointer<Sensor> s) {
     emit startNewSimulationSignal(s);
 }
 

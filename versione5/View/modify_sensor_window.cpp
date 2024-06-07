@@ -69,7 +69,7 @@ void ModifySensorWindow::cleanFields() {
     menu2->setCurrentIndex(-1);
 }
 
-void ModifySensorWindow::saveButtonClicked(Sensor* s){
+void ModifySensorWindow::saveButtonClicked(QPointer<Sensor> s){
     emit saveButtonClickedSignal(s);
 }
 

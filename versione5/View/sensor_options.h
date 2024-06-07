@@ -23,7 +23,7 @@ private:
 private slots:
     void showModifyWindow();
     void showDeleteWindow();
-    void startNewSimulation(Sensor*);
+    void startNewSimulation(QPointer<Sensor>);
 signals:
     void showModifyWindowSignal();
     void showDeleteWindowSignal();

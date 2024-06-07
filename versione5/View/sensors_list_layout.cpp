@@ -53,12 +53,11 @@ void SensorsListLayout::notify(Sensor& s) {
     }
 }
 
-void SensorsListLayout::showInfo(Sensor* s){
-    if(s)
-        emit showInfoSignal(s);
+void SensorsListLayout::showInfo(QPointer<Sensor> s){
+    emit showInfoSignal(s);
 }
 
-void SensorsListLayout::sendSensor(Sensor* s){
+void SensorsListLayout::sendSensor(QPointer<Sensor> s){
     emit sendSensorSignal(s);
 }
 
@@ -82,18 +81,29 @@ void SensorsListLayout::clearLayout() {
             if(qobject_cast<CustomButton*>(widget)) {
                 buttonsLayout->removeWidget(widget);
                 delete widget;
+                widget = nullptr; // boh
             }
         }
         delete item;
+        item = nullptr; // boh
     }
 }
 
 
-QList<CustomButton*> SensorsListLayout::getButtonsList() const {
-    return buttonsList;
+QList<CustomButton*>* SensorsListLayout::getButtonsList() {
+    return &buttonsList; // copia profonda
 }
 
 QLabel* SensorsListLayout::getLabel() const {
     return sensorsLabel;
 }
 
+void SensorsListLayout::printListTest() const {
+    for(auto button: buttonsList){
+        button->print_test();
+    }
+}
+
+void SensorsListLayout::removeOneButton(CustomButton* b) {
+    buttonsList.removeOne(b);
+}

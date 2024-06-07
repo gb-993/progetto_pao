@@ -24,6 +24,6 @@ void ConfirmDeleteWindow::setUpDelete(Sensor* s) {
     connect(deleteButton, &CustomButton::buttonClickedSignal, this, &ConfirmDeleteWindow::deleteButtonClicked);
 }
 
-void ConfirmDeleteWindow::deleteButtonClicked(Sensor* s) {
+void ConfirmDeleteWindow::deleteButtonClicked(QPointer<Sensor> s) {
     emit deleteButtonClickedSignal(s);
 }
