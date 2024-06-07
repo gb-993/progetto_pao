@@ -20,10 +20,10 @@ private slots:
 signals:
     void buttonClickedSignal(Sensor*);
 public:
-    CustomButton(QString, Sensor*, QPushButton* parent = nullptr);
+    CustomButton(QString, QPushButton* parent = nullptr);
     void setSensor(Sensor*);
-    Sensor& getSensor() const;
-    int getId() const;
+    Sensor* getSensor() const;
+    void deleteSensorPointer();
 };
 
 #endif // CUSTOM_BUTTON_H

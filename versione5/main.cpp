@@ -59,6 +59,8 @@ int main(int argc, char *argv[])
     //c1.func_load("C:/Users/cater/OneDrive/Desktop/Uni/Secondoanno/P2/DocumentiProgetto/testo.txt", sm1);
     //sm1.print_sensor_list();
 
+    Sensor_manager* myList = new Sensor_manager();
+    myList->addSensor(new Sensor_light());
 
 
     return a.exec();

@@ -31,6 +31,10 @@ public:
 
     QJsonObject sensorToJson();
     Sensor_light* jsonToSensor(const QJsonValue&);
+
+    virtual ~Sensor_light() {}
+
+
 };
 
 

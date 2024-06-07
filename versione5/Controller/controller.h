@@ -57,7 +57,7 @@ public:
     void func_save(Sensor_manager& ,const QString& );
     void func_load(const QString&, Sensor_manager& );
 
-    void clearButtonsList(QList<CustomButton*>);
+    void clearButton(CustomButton*);
     void refresh();
 
     virtual ~Controller() {} // ??????

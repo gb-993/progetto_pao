@@ -28,7 +28,8 @@ SensorsListLayout::SensorsListLayout() :
 void SensorsListLayout::addButton(Sensor* s) {
     sensorsLabel->hide();
 
-    CustomButton* button = new CustomButton(s->getName(),s);
+    CustomButton* button = new CustomButton(s->getName());
+    button->setSensor(s);
     buttonsList.append(button);
     button->setStyleSheet("background-color: white; color: #000080; font-size: 14px;");
     buttonsLayout->insertWidget(0, button, 0, Qt::AlignTop);
@@ -45,7 +46,7 @@ void SensorsListLayout::addButton(Sensor* s) {
 
 void SensorsListLayout::notify(Sensor& s) {
     for(auto list=buttonsList.begin(); list!=buttonsList.end(); list++){
-        if((*list)->getSensor().getId() == s.getId()){
+        if((*list)->getSensor()->getId() == s.getId()){
             (*list)->setText(s.getName());
             break;
         }
@@ -53,7 +54,8 @@ void SensorsListLayout::notify(Sensor& s) {
 }
 
 void SensorsListLayout::showInfo(Sensor* s){
-    emit showInfoSignal(s);
+    if(s)
+        emit showInfoSignal(s);
 }
 
 void SensorsListLayout::sendSensor(Sensor* s){

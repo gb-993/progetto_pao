@@ -22,6 +22,8 @@ InfoLayout::InfoLayout(QWidget* parent): QWidget(parent) {
 
 void InfoLayout::setUpInfo(Sensor* s){
 
+    qDebug() << s->getName();
+
     label1->setText(QString("<b>Id:</b> %1 <b>Name:</b> %2").arg(s->getInfo().at(0), s->getInfo().at(1)));
     label1->setStyleSheet("color: #000080;");
     label2->setText(QString("<b>Type:</b> %1 <b>Environment:</b> %2").arg(s->getInfo().at(2), s->getInfo().at(3)));

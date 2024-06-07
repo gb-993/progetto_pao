@@ -32,6 +32,9 @@ public:
 
     QJsonObject sensorToJson();
     Sensor_volume* jsonToSensor(const QJsonValue&);
+
+    virtual ~Sensor_volume() {}
 };
+
 
 #endif // SENSOR_VOLUME_H

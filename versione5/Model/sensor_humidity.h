@@ -35,6 +35,8 @@ public:
 
     QJsonObject sensorToJson();
     Sensor_humidity* jsonToSensor(const QJsonValue&);
+
+    virtual ~Sensor_humidity() {}
 };
 
 #endif // SENSOR_HUMIDITY_H

@@ -4,7 +4,7 @@ Sensor::Sensor(QString n, QString t, QString e): id(generateId()), name(n), type
 
 int Sensor::counter = 0; // Variabile statica per tenere traccia del contatore
 int Sensor::generateId() const {
-    return ++counter;
+    return counter++;
 }
 
 // metodi get

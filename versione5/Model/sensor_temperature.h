@@ -35,6 +35,10 @@ public:
 
     QJsonObject sensorToJson();
     Sensor_temperature* jsonToSensor(const QJsonValue&);
+
+    virtual ~Sensor_temperature() {}
+
+
 };
 
 #endif // SENSOR_TEMPERATURE_H

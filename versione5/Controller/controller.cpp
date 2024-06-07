@@ -92,7 +92,6 @@ void Controller::deleteSensor(Sensor* s) {
     delete s;
     s = nullptr;
 
-
     confirmwindow->close();
     info->hide();
     option->hide();
@@ -128,6 +127,7 @@ void Controller::openLoadWindow() {
     QString fileName = QFileDialog::getOpenFileName(nullptr, "Open JSON File", "", "JSON Files (*.json);;All Files (*)");
     if (!fileName.isEmpty()) {
         func_load(fileName, *sm);
+        refresh();
     }
 }
 
@@ -143,7 +143,6 @@ void Controller::func_save(Sensor_manager& sm1, const QString& filename){
 }
 
 void Controller::func_load(const QString& filename, Sensor_manager& sm1){
-    // CONTROLLER
     QFile file(filename);
     if (!file.open(QIODevice::ReadOnly)) {
         // Errore se non è possibile aprire il file
@@ -155,7 +154,16 @@ void Controller::func_load(const QString& filename, Sensor_manager& sm1){
 
 void Controller::refresh() {
     sensorslist->clearLayout();
-    clearButtonsList(sensorslist->getButtonsList());
+    QList<CustomButton*> buttonsList = sensorslist->getButtonsList();
+    /*for(auto &one_button : buttonsList){
+        buttonsList.removeOne(one_button);
+        clearButton(one_button);
+    }*/
+
+    for (CustomButton* button : buttonsList) {
+        clearButton(button); // Clear each button
+    }
+    buttonsList.clear();
 
     QList<Sensor*> sensors = sm->getSensors();
     for (auto &one_sensor : sensors) {
@@ -170,7 +178,7 @@ void Controller::refresh() {
         singlesensor->getLabel()->show();
     }
 
-    QList<Sensor*> lista = sm->getSensors();
+    /*QList<Sensor*> lista = sm->getSensors();
     if(lista.isEmpty()) {
         qDebug() <<"Lista vuota";
     }else{
@@ -178,9 +186,11 @@ void Controller::refresh() {
         for (Sensor* sensor : lista) {
             sensor->print_sensor();
         }
-    }
+    }*/
 }
 
-void Controller::clearButtonsList(QList<CustomButton*> bl) {
-    bl.clear(); // non funzionaaaaaaaaaa
+void Controller::clearButton(CustomButton* button) {
+    button->deleteSensorPointer();
+    delete button;
+    button = nullptr;
 }

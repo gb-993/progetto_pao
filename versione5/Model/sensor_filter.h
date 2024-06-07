@@ -31,6 +31,8 @@ public:
 
     QJsonObject sensorToJson();
     Sensor_filter* jsonToSensor(const QJsonValue&);
+
+    virtual ~Sensor_filter() {}
 };
 
 #endif // SENSOR_FILTER_H

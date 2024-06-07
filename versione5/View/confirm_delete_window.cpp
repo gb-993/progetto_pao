@@ -1,7 +1,7 @@
 #include "confirm_delete_window.h"
 
 ConfirmDeleteWindow::ConfirmDeleteWindow(): label(new QLabel("Do you want to delete this sensor?")),
-    deleteButton(new CustomButton("Yes", nullptr)), backButton(new QPushButton("No")), layout(new QVBoxLayout()) {
+    deleteButton(new CustomButton("Yes")), backButton(new QPushButton("No")), layout(new QVBoxLayout()) {
 
     setStyleSheet("background-color: #c2c2a3; color: #000080;");
 
