@@ -24,7 +24,7 @@ signals:
     void showSaveWindowSignal();
 public:
     TopLayout(QWidget* parent = nullptr);
-    QPushButton* getSaveButton();
+    QPushButton* getSaveButton() const ;
 };
 
 #endif // TOP_LAYOUT_H

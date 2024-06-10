@@ -25,6 +25,7 @@ SensorsListLayout::SensorsListLayout(QWidget* parent): QWidget(parent) {
     connect(searchBar, &QLineEdit::textChanged, this, &SensorsListLayout::searchTextChanged);
 }
 
+// aggiunge un CustomButton al layout e alla buttonsList; aggiunge this come osservatore del sensore passato
 void SensorsListLayout::addButton(Sensor* s) {
     sensorsLabel->hide();
 
@@ -43,6 +44,7 @@ void SensorsListLayout::addButton(Sensor* s) {
     s->addObserver(this);
 }
 
+// override del metodo notify che aggiorna il nome del CustomButton quando viene modificato
 void SensorsListLayout::notify(Sensor& s) {
     for(auto list=buttonsList.begin(); list!=buttonsList.end(); list++){
         if((*list)->getSensor()->getId() == s.getId()){
@@ -52,14 +54,17 @@ void SensorsListLayout::notify(Sensor& s) {
     }
 }
 
+// emette segnale per mostrare le info
 void SensorsListLayout::showInfo(QPointer<Sensor> s){
     emit showInfoSignal(s);
 }
 
+// emette segnale per inviare il sensore
 void SensorsListLayout::sendSensor(QPointer<Sensor> s){
     emit sendSensorSignal(s);
 }
 
+// ricerca CustomButton in base al loro nome
 void SensorsListLayout::searchTextChanged(const QString &text) {
     for (int i = 0; i < buttonsLayout->count(); ++i) {
         QWidget *widget = buttonsLayout->itemAt(i)->widget();
@@ -73,6 +78,7 @@ void SensorsListLayout::searchTextChanged(const QString &text) {
     }
 }
 
+// pulisce il layout eliminando tutti i CustomButton presenti in buttonsLayout
 void SensorsListLayout::clearLayout() {
     QLayoutItem* item;
     while((item = buttonsLayout->takeAt(0)) != nullptr) {
@@ -88,15 +94,17 @@ void SensorsListLayout::clearLayout() {
     }
 }
 
-
+// ritorna la buttonsList
 QList<CustomButton*>* SensorsListLayout::getButtonsList() {
-    return &buttonsList; // copia profonda
+    return &buttonsList;
 }
 
+// ritorna la sensorsLabel
 QLabel* SensorsListLayout::getLabel() const {
     return sensorsLabel;
 }
 
+// rimuove il bottone passato dalla buttonsList
 void SensorsListLayout::removeOneButton(CustomButton* b) {
     buttonsList.removeOne(b);
 }

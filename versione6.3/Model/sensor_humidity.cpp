@@ -7,6 +7,7 @@ Sensor_humidity::Sensor_humidity(QString n, QString t, QString e, double l, doub
 double Sensor_humidity::getLower() const {
     return lower;
 }
+
 double Sensor_humidity::getUpper() const {
     return upper;
 }
@@ -52,7 +53,7 @@ void Sensor_humidity::accept(SensorVisitorInterface& visitor) {
 }
 
 // trasforma il sensore in un QJsonObject che lo rappresenta
-QJsonObject Sensor_humidity::sensorToJson(){
+QJsonObject Sensor_humidity::sensorToJson() const{
     QJsonObject sensorObject = Sensor::sensorToJsonCommonField();
     sensorObject["Min Value"] = getLower();
     sensorObject["Max Value"] = getUpper();
@@ -69,37 +70,4 @@ QJsonObject Sensor_humidity::sensorToJson(){
         sensorObject["simulationData"] = simulationDataArray;
     }
     return sensorObject;
-}
-
-
-
-Sensor_humidity* Sensor_humidity::jsonToSensor(const QJsonValue& sensorValue){
-    // SENSOR <- RICEVE QUESTO "SENSOR VALUE"
-    QJsonObject sensorObject = sensorValue.toObject();
-
-    // Estrarre il nome e il tipo del sensore dall'oggetto JSON
-    //int id = sensorObject["id"].toInt();
-    QString name = sensorObject["name"].toString();
-    QString type = sensorObject["type"].toString();
-    QString environment = sensorObject["environment"].toString();
-
-    double lower = sensorObject["Min Value"].toDouble();
-    double upper = sensorObject["Max Value"].toDouble();
-
-
-    // Creare un nuovo sensore e aggiungerlo alla lista dei puntatori a sensori
-    Sensor_humidity* sensor = new Sensor_humidity(name, type, environment, lower, upper);
-
-    if (sensorObject.contains("simulationData")) {
-        QJsonArray simulationDataArray = sensorObject["simulationData"].toArray();
-        QList<QPointF> simulationData;
-        for (const auto& pointValue : simulationDataArray) {
-            QJsonObject pointObject = pointValue.toObject();
-            qreal x = pointObject["x"].toDouble();
-            qreal y = pointObject["y"].toDouble();
-            simulationData.append(QPointF(x, y));
-        }
-        sensor->setSimulationData(simulationData);
-    }
-    return sensor;
 }

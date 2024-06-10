@@ -33,19 +33,23 @@ TopLayout::TopLayout(QWidget* parent): QWidget(parent) {
     connect(saveButton, &QPushButton::clicked, this, &TopLayout::showSaveWindow);
 }
 
+// emette segnale di show finestra di creazione
 void TopLayout::showCreateWindow(){
     emit showCreateWindowSignal();
 }
 
+// emette segnale di show finestra di load
 void TopLayout::showLoadWindow(){
     emit showLoadWindowSignal();
 }
 
+// emette segnale di show finestra di save
 void TopLayout::showSaveWindow(){
     emit showSaveWindowSignal();
 }
 
-QPushButton* TopLayout::getSaveButton(){
+// metodo get per il saveButton
+QPushButton* TopLayout::getSaveButton() const {
     return saveButton;
 }
 

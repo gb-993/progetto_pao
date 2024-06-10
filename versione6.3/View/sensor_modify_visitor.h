@@ -18,8 +18,8 @@ private:
     QComboBox* menu2;
 public:
     SensorModifyVisitor();
-    QComboBox* getMenu();
-    QComboBox* getMenu2();
+    QComboBox* getMenu() const;
+    QComboBox* getMenu2() const;
     void visitLight(Sensor_light&);
     void visitTemperature(Sensor_temperature&);
     void visitHumidity(Sensor_humidity&);

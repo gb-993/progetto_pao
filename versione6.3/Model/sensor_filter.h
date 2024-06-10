@@ -22,8 +22,7 @@ public:
     void setFil(const int&);
     void genSimulation();
     void accept(SensorVisitorInterface&);
-    QJsonObject sensorToJson();
-    Sensor_filter* jsonToSensor(const QJsonValue&);
+    QJsonObject sensorToJson() const;
     virtual ~Sensor_filter() {}
 };
 

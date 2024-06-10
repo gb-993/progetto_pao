@@ -25,8 +25,7 @@ public:
     void setUpper(const double&);
     void genSimulation();
     void accept(SensorVisitorInterface&);
-    QJsonObject sensorToJson();
-    Sensor_humidity* jsonToSensor(const QJsonValue&);
+    QJsonObject sensorToJson() const;
     virtual ~Sensor_humidity() {}
 };
 

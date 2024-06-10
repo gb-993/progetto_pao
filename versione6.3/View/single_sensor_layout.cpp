@@ -30,6 +30,7 @@ SingleSensorLayout::SingleSensorLayout(SensorOptions* so, InfoLayout* in, Charts
     setLayout(mainLayout);
 }
 
+// chiama le varie setUp per le singole classi; se il sensore passato non ha dati di simulazione, li genera
 void SingleSensorLayout::setUpOptions(Sensor* s) {
     sensorLabel->hide();
 
@@ -46,6 +47,7 @@ void SingleSensorLayout::setUpOptions(Sensor* s) {
     chart->show();
 }
 
+// ritorna la sensorLabel
 QLabel* SingleSensorLayout::getLabel() const {
     return sensorLabel;
 }

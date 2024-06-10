@@ -2,13 +2,17 @@
 
 SensorModifyVisitor::SensorModifyVisitor() {}
 
-QComboBox* SensorModifyVisitor::getMenu() {
+// ritorna il primo menu
+QComboBox* SensorModifyVisitor::getMenu() const {
     return menu;
 }
 
-QComboBox* SensorModifyVisitor::getMenu2() {
+//ritorna il secondo menu
+QComboBox* SensorModifyVisitor::getMenu2() const {
     return menu2;
 }
+
+// override dei metodi virtuali puri del visitor
 
 void SensorModifyVisitor::visitLight(Sensor_light&) {
     menu = new QComboBox();

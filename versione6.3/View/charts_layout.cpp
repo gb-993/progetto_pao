@@ -11,6 +11,7 @@ ChartsLayout::ChartsLayout(QWidget* parent): QWidget(parent) {
     setLayout(layout);
 }
 
+// setUp del grafico
 void ChartsLayout::setUpChart(QList<QPointF> dati) {
     if (chart->series().contains(series)) {
         chart->removeSeries(series);

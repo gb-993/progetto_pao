@@ -17,22 +17,12 @@ private:
     double upper;
 public:
     Sensor_volume(QString ="default_name", QString ="volume", QString ="tank", double =200.0);
-
     double getUpper() const;
     QList<QString> getInfo() const;
-
     void setUpper(const double&);
-
-    void print_sensor() const;
-
     void genSimulation();
-
-    // metodi Visitor
     void accept(SensorVisitorInterface&);
-
-    QJsonObject sensorToJson();
-    Sensor_volume* jsonToSensor(const QJsonValue&);
-
+    QJsonObject sensorToJson() const;
     virtual ~Sensor_volume() {}
 };
 

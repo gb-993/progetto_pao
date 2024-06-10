@@ -15,7 +15,7 @@ private:
     QLabel* label;
 public:
     SensorInfoVisitor();
-    QLabel* getLabel();
+    QLabel* getLabel() const;
     void visitLight(Sensor_light&);
     void visitTemperature(Sensor_temperature&);
     void visitHumidity(Sensor_humidity&);

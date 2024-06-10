@@ -2,15 +2,18 @@
 
 Sensor_manager::Sensor_manager() {}
 
+// aggiunge un sensore alla lista
 void Sensor_manager::addSensor(Sensor *sensor) {
     all_sensors.append(sensor);
 }
 
+// riomuove un singolo sensore dalla lista
 void Sensor_manager::removeSensor(Sensor *sensor) {
     if (sensor)
         all_sensors.removeOne(sensor);
 }
 
+// elimina tutti i sensori della lista
 void Sensor_manager::removeAllSensor() {
     if(all_sensors.isEmpty()) {
         return;
@@ -23,46 +26,24 @@ void Sensor_manager::removeAllSensor() {
     }
 }
 
+// ritorna la lista dei sensori
 QList<Sensor*> Sensor_manager::getSensors() const {
     return all_sensors;
 }
 
-void Sensor_manager::print_sensor_list() {
-    if(all_sensors.isEmpty()) {
-        qDebug() <<"Lista vuota";
-    }else{
-        qDebug() << "Sensori nella lista:";
-        for (Sensor* sensor : all_sensors) {
-            sensor->print_sensor();
-        }
-    }
-}
-
-// crea il json_file finale
-// "sensors" : [un array di sensori in formato json]
-QJsonObject Sensor_manager::sensorListToJson(){
+// trasforma la lista dei sensori in un qjson array di qjsonobject
+QJsonObject Sensor_manager::sensorListToJson() const {
     QJsonObject dataObject;
     QJsonArray sensorsArray;
-
     for (Sensor* sensor : all_sensors) {
         sensorsArray.append(sensor->sensorToJson());
     }
-
     dataObject["sensors"] = sensorsArray;
     return dataObject;
 }
 
+// trasforma un qjsonobject in un sensore da aggiungere alla lista di sensori
 void Sensor_manager::loadDataFromJson(QFile& file) {
-    /*
-    // CONTROLLER
-    QFile file(filename);
-    if (!file.open(QIODevice::ReadOnly)) {
-        // Errore se non è possibile aprire il file
-        qWarning() << "Impossibile aprire il file per la lettura:" << file.errorString();
-        return;
-    }
-*/
-    // Leggi i dati JSON dal file
     QByteArray jsonData = file.readAll();
     file.close();
     QJsonDocument loadDoc(QJsonDocument::fromJson(jsonData));
@@ -72,7 +53,5 @@ void Sensor_manager::loadDataFromJson(QFile& file) {
 
     for (const QJsonValue& sensorValue : sensorsArray) {
         all_sensors.append(Sensor_generator::jsonToSensor(sensorValue));
-
     }
-
 }

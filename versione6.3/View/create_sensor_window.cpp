@@ -77,6 +77,7 @@ CreateSensorWindow::CreateSensorWindow(QDialog* parent): QDialog(parent) {
     validateFields();
 }
 
+// modifica la finestra di creazione in base al tipo di sensore selezionato
 void CreateSensorWindow::updateWidgets() {
     textLower->hide();
     textUpper->hide();
@@ -133,32 +134,42 @@ void CreateSensorWindow::updateWidgets() {
     }
 }
 
+// emette segnale per creare il sensore
 void CreateSensorWindow::createButtonClicked(){
     emit createButtonClickedSignal();
 }
 
+// metodi get per le scelte inserite da utente
+
 QString CreateSensorWindow::getName() const {
     return textName->text();
 }
+
 QString CreateSensorWindow::getType() const {
     return menuType->currentText();
 }
+
 QString CreateSensorWindow::getEnv() const {
     return menuEnv->currentText();
 }
+
 int CreateSensorWindow::getFilter() const {
     return menuFilter->currentText().toInt();
 }
+
 double CreateSensorWindow::getLower() const {
     return textLower->currentText().toDouble();
 }
+
 double CreateSensorWindow::getUpper() const {
     return textUpper->currentText().toDouble();
 }
+
 bool CreateSensorWindow::getStatus() const {
     return menuStatusLight->currentText().toInt();
 }
 
+// resetta i campi inseriti precedentemente
 void CreateSensorWindow::resetFields() {
     textName->clear();
     menuEnv->setCurrentIndex(-1);
@@ -176,6 +187,7 @@ void CreateSensorWindow::resetFields() {
     validateFields();
 }
 
+// rende obbligatorio compilare tutti i campi prima di premere il bottone di creazione
 void CreateSensorWindow::validateFields() {
     bool valid = !textName->text().isEmpty()
                  && !menuEnv->currentText().isEmpty()

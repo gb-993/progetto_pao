@@ -55,7 +55,6 @@ public:
     Controller(QObject* parent = nullptr);
     void func_save(const QString&) const;
     void func_load(const QString&);
-    //void clearButton(CustomButton*);
     void refresh();
     void hideSingleSensorView() const;
     virtual ~Controller() {}

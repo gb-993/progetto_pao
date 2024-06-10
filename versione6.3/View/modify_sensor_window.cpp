@@ -41,6 +41,7 @@ ModifySensorWindow::ModifySensorWindow(QDialog* parent): QDialog(parent){
     connect(cancelButton, &QPushButton::clicked, this, &QWidget::close);
 }
 
+// setUp finestra modifica in vase al tipo di sensore
 void ModifySensorWindow::setUpModify(Sensor* s) {
     saveButton->setSensor(s);
 
@@ -64,6 +65,7 @@ void ModifySensorWindow::setUpModify(Sensor* s) {
     connect(saveButton, &CustomButton::buttonClickedSignal, this, &ModifySensorWindow::saveButtonClicked);
 }
 
+// pulisce i campi inseriti precedentemente
 void ModifySensorWindow::cleanFields() {
     textName->clear();
     menuEnv->setCurrentIndex(-1);
@@ -71,19 +73,25 @@ void ModifySensorWindow::cleanFields() {
     menu2->setCurrentIndex(-1);
 }
 
+// emette segnale per salvare modifiche
 void ModifySensorWindow::saveButtonClicked(QPointer<Sensor> s){
     emit saveButtonClickedSignal(s);
 }
 
+// metodi get per le modifiche inserite da utente
+
 QString ModifySensorWindow::getName() const {
     return textName->text();
 }
+
 QString ModifySensorWindow::getEnv() const {
     return menuEnv->currentText();
 }
+
 QString ModifySensorWindow::getMenu() const {
     return menu->currentText();
 }
+
 QString ModifySensorWindow::getMenu2() const {
     return menu2->currentText();
 }

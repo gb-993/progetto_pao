@@ -136,6 +136,7 @@ void Controller::openLoadWindow() {
         sm->removeAllSensor();
         func_load(fileName);
         hideSingleSensorView();
+        top->getSaveButton()->setDisabled(false);
         refresh();
     }
 }
@@ -160,7 +161,6 @@ void Controller::func_load(const QString& filename){
         return;
     }
     sm->loadDataFromJson(file);
-    top->getSaveButton()->setDisabled(false);
 }
 
 // aggiorna la view ogni volta che vengono effettuate delle modifiche alla lista di sensori (delete e upload)
@@ -178,13 +178,7 @@ void Controller::refresh() {
         }
     }
 }
-/*
-// elimina il CustomButton passato
-void Controller::clearButton(CustomButton* button) {
-    delete button;
-    button = nullptr;
-}
-*/
+
 // nasconde la finestra specifica di un sensore
 void Controller::hideSingleSensorView() const {
     sensorslist->getLabel()->show();

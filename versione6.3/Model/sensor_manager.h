@@ -13,20 +13,14 @@
 
 class Sensor_manager {
 private:
-    QList<Sensor*> all_sensors; // Lista dei sensori
+    QList<Sensor*> all_sensors;
 public:
     Sensor_manager();
-    // metodi get
     QList<Sensor *> getSensors() const;
-    // Funzioni per la gestione dei sensori
-    void addSensor(Sensor *sensor);
-    void removeSensor(Sensor *sensor);
+    void addSensor(Sensor*);
+    void removeSensor(Sensor*);
     void removeAllSensor();
-    void print_sensor_list();
-
-    // serializer out
-    QJsonObject sensorListToJson();
-    // serializer in
+    QJsonObject sensorListToJson() const;
     void loadDataFromJson(QFile&);
 };
 

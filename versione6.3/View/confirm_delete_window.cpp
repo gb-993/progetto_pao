@@ -21,6 +21,7 @@ ConfirmDeleteWindow::ConfirmDeleteWindow(QDialog* parent): QDialog(parent) {
     connect(backButton, &QPushButton::clicked, this, &QWidget::close);
 }
 
+// setUp della finestra di conferma eliminazione di un sensore
 void ConfirmDeleteWindow::setUpDelete(Sensor* s) {
     deleteButton->setSensor(s);
 
@@ -28,6 +29,7 @@ void ConfirmDeleteWindow::setUpDelete(Sensor* s) {
     connect(deleteButton, &CustomButton::buttonClickedSignal, this, &ConfirmDeleteWindow::deleteButtonClicked);
 }
 
+// emette segnale per eliminare il sensore
 void ConfirmDeleteWindow::deleteButtonClicked(QPointer<Sensor> s) {
     emit deleteButtonClickedSignal(s);
 }

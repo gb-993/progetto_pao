@@ -7,10 +7,8 @@ SensorOptions::SensorOptions(QWidget* parent): QWidget(parent) {
     deleteButton = new QPushButton("Delete");
     start_simulation = new CustomButton("New Simulation");
 
-    // Setto caratteristiche TopLayout
     setFixedWidth(210);
 
-    // Setto caratteristiche bottoni
     modify->setStyleSheet("background-color: white; color: #000080; font-size: 16px;");
     modify->setFixedWidth(195);
     deleteButton->setStyleSheet("background-color: white; color: #000080; font-size: 16px;");
@@ -18,7 +16,6 @@ SensorOptions::SensorOptions(QWidget* parent): QWidget(parent) {
     start_simulation->setStyleSheet("background-color: white; color: #000080; font-size: 16px;");
     start_simulation->setFixedWidth(195);
 
-    // Aggiungo bottoni al layout
     buttonsLayout->addWidget(modify);
     buttonsLayout->addWidget(deleteButton);
     buttonsLayout->addWidget(start_simulation);
@@ -36,18 +33,22 @@ SensorOptions::SensorOptions(QWidget* parent): QWidget(parent) {
     connect(start_simulation, &CustomButton::buttonClickedSignal, this, &SensorOptions::startNewSimulation);
 }
 
+// setta il sensore passato nel CustomButton start_simulation
 void SensorOptions::setUpButtonOptions(Sensor* s) {
     start_simulation->setSensor(s);
 }
 
+// emette segnale per mostrare la finestra di modifica
 void SensorOptions::showModifyWindow() {
     emit showModifyWindowSignal();
 }
 
+// emette segnale per mostrare la finestra di eliminazione
 void SensorOptions::showDeleteWindow() {
     emit showDeleteWindowSignal();
 }
 
+// emette segnale per avviare una nuova simulazione
 void SensorOptions::startNewSimulation(QPointer<Sensor> s) {
     emit startNewSimulationSignal(s);
 }

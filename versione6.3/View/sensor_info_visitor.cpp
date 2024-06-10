@@ -2,9 +2,12 @@
 
 SensorInfoVisitor::SensorInfoVisitor() {}
 
-QLabel* SensorInfoVisitor::getLabel() {
+// ritorna la label
+QLabel* SensorInfoVisitor::getLabel() const{
     return label;
 }
+
+// override dei metodi virtuali puri del visitor
 
 void SensorInfoVisitor::visitLight(Sensor_light& light) {
     label = new QLabel("<b>Actual Status: </b>" + light.getInfo().at(4));

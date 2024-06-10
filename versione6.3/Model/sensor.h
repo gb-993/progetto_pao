@@ -43,8 +43,7 @@ public:
     virtual void notifyObservers(Sensor&);
     virtual void accept(SensorVisitorInterface& visitor) = 0;
     QJsonObject sensorToJsonCommonField() const;
-    virtual QJsonObject sensorToJson() =0;
-    static Sensor* jsonToSensor(const QJsonValue&) =0;
+    virtual QJsonObject sensorToJson() const =0;
     virtual ~Sensor() {}
 };
 
