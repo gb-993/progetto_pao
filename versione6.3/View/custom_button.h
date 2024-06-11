@@ -1,22 +1,16 @@
 #ifndef CUSTOM_BUTTON_H
 #define CUSTOM_BUTTON_H
 
-#include <QWidget>
 #include <QPushButton>
 #include <QString>
 #include <QPointer>
-#include "../Model/sensor_light.h"
-#include "../Model/sensor_filter.h"
-#include "../Model/sensor_humidity.h"
-#include "../Model/sensor_temperature.h"
-#include "../Model/sensor_volume.h"
+#include "../Model/sensor.h"
 
-class CustomButton: public QPushButton{
+class CustomButton: public QPushButton {
     Q_OBJECT
 private:
     QPointer<Sensor> sensor;
     QString name;
-
 private slots:
     void buttonClicked();
 signals:

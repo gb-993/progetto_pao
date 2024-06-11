@@ -5,7 +5,6 @@
 #include <QList>
 #include <QPointF>
 #include <QObject>
-#include <QDebug>
 #include <QRandomGenerator>
 #include <QDateTime>
 #include <QJsonObject>

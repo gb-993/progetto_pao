@@ -1,5 +1,4 @@
 #include "single_sensor_layout.h"
-#include "sensor_options.h"
 
 SingleSensorLayout::SingleSensorLayout(SensorOptions* so, InfoLayout* in, ChartsLayout* ch, QWidget* parent):
     QWidget(parent),

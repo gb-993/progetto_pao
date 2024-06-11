@@ -4,8 +4,6 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QHBoxLayout>
-#include <QFileDialog>
-#include "create_sensor_window.h"
 
 class TopLayout: public QWidget {
     Q_OBJECT

@@ -1,15 +1,6 @@
 #ifndef SENSOR_HUMIDITY_H
 #define SENSOR_HUMIDITY_H
 
-#include <QString>
-#include <QList>
-#include <QPointF>
-#include <QWidget>
-#include <QJsonObject>
-#include <QJsonArray>
-#include <QDebug>
-#include <QRandomGenerator>
-#include <QJsonValue>
 #include "sensor.h"
 
 class Sensor_humidity: public Sensor {

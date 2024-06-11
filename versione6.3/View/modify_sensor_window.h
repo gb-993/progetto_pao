@@ -5,13 +5,8 @@
 #include <QComboBox>
 #include <QVBoxLayout>
 #include <QLabel>
-#include <QPushButton>
 #include <QLineEdit>
-#include "../Model/sensor_light.h"
-#include "../Model/sensor_filter.h"
-#include "../Model/sensor_humidity.h"
-#include "../Model/sensor_temperature.h"
-#include "../Model/sensor_volume.h"
+#include "../Model/sensor.h"
 #include "sensor_modify_visitor.h"
 #include "custom_button.h"
 

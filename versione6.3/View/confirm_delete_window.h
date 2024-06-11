@@ -4,12 +4,7 @@
 #include <QDialog>
 #include <QLabel>
 #include <QVBoxLayout>
-#include <QPushButton>
-#include "../Model/sensor_light.h"
-#include "../Model/sensor_filter.h"
-#include "../Model/sensor_humidity.h"
-#include "../Model/sensor_temperature.h"
-#include "../Model/sensor_volume.h"
+#include "../Model/sensor.h"
 #include "custom_button.h"
 
 class ConfirmDeleteWindow: public QDialog {

@@ -2,9 +2,7 @@
 #define CHARTS_LAYOUT_H
 
 #include <QChart>
-#include <QWidget>
 #include <QLineSeries>
-#include <QValueAxis>
 #include <QChartView>
 #include <QPointF>
 #include <QVBoxLayout>

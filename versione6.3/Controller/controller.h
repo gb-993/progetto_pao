@@ -1,11 +1,7 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include <QObject>
-#include <QFile>
-#include <QString>
-#include <QJsonDocument>
-#include <QJsonObject>
+#include <QFileDialog>
 #include "../View/mainwindow.h"
 #include "../View/create_sensor_window.h"
 #include "../View/custom_button.h"

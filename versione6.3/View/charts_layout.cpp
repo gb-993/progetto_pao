@@ -25,14 +25,12 @@ void ChartsLayout::setUpChart(QList<QPointF> dati) {
     QPen pen(Qt::darkBlue);
     series->setPen(pen);
 
-    // Aggiungi la serie al grafico
     chart->addSeries(series);
 
     chart->setTitle("Simulation");
 
-    chart->createDefaultAxes(); // Questo adatta gli assi automaticamente
+    chart->createDefaultAxes();
 
-    chart->legend()->setVisible(false); // Imposta la visibilità della legenda
-
+    chart->legend()->setVisible(false);
 }
 

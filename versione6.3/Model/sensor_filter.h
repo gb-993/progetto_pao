@@ -1,15 +1,6 @@
 #ifndef SENSOR_FILTER_H
 #define SENSOR_FILTER_H
 
-#include <QJsonValue>
-#include <QString>
-#include <QList>
-#include <QPointF>
-#include <QWidget>
-#include <QJsonObject>
-#include <QJsonArray>
-#include <QDebug>
-#include <QRandomGenerator>
 #include "sensor.h"
 
 class Sensor_filter: public Sensor {

@@ -3,8 +3,6 @@
 
 #include <QWidget>
 #include <QComboBox>
-//#include <QLineEdit>
-#include <QLabel>
 #include "../Model/sensor_visitor_interface.h"
 #include "../Model/sensor_light.h"
 #include "../Model/sensor_filter.h"

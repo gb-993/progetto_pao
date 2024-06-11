@@ -2,15 +2,7 @@
 #define SENSOR_OPTIONS_H
 
 #include <QWidget>
-#include <QPushButton>
 #include <QVBoxLayout>
-#include "../Model/sensor_visitor_interface.h"
-#include "../Model/sensor_light.h"
-#include "../Model/sensor_filter.h"
-#include "../Model/sensor_humidity.h"
-#include "../Model/sensor_temperature.h"
-#include "../Model/sensor_volume.h"
-#include "charts_layout.h"
 #include "custom_button.h"
 
 class SensorOptions: public QWidget {

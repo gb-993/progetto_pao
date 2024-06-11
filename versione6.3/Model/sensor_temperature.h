@@ -1,15 +1,6 @@
 #ifndef SENSOR_TEMPERATURE_H
 #define SENSOR_TEMPERATURE_H
 
-#include <QString>
-#include <QList>
-#include <QPointF>
-#include <QWidget>
-#include <QJsonObject>
-#include <QJsonArray>
-#include <QDebug>
-#include <QRandomGenerator>
-#include <QJsonValue>
 #include "sensor.h"
 
 class Sensor_temperature: public Sensor {

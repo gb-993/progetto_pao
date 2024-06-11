@@ -5,11 +5,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QLabel>
-#include "../Model/sensor_light.h"
-#include "../Model/sensor_filter.h"
-#include "../Model/sensor_humidity.h"
-#include "../Model/sensor_temperature.h"
-#include "../Model/sensor_volume.h"
+#include "../Model/sensor.h"
 #include "sensor_info_visitor.h"
 
 class InfoLayout: public QWidget, public Sensor_observer_interface {
