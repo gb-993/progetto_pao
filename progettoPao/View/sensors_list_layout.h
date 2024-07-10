@@ -5,6 +5,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
+#include <QAction>
 #include "custom_button.h"
 
 class SensorsListLayout: public QWidget, public Sensor_observer_interface  {
