@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="icons/list.svg">resources/icons/list.svg</file>
+        <file alias="icons/chart.svg">resources/icons/chart.svg</file>
+        <file alias="icons/search.svg">resources/icons/search.svg</file>
+        <file alias="icons/trash.svg">resources/icons/trash.svg</file>
+        <file alias="icons/pencil.svg">resources/icons/pencil.svg</file>
+        <file alias="icons/add.svg">resources/icons/add.svg</file>
+        <file alias="icons/upload.svg">resources/icons/upload.svg</file>
+        <file alias="icons/save.svg">resources/icons/save.svg</file>
+        <file alias="icons/data.svg">resources/icons/data.svg</file>
+        <file alias="icons/times.svg">resources/icons/times.svg</file>
+        <file alias="icons/check.svg">resources/icons/check.svg</file>
+        <file alias="icons/light.svg">resources/icons/light.svg</file>
+        <file alias="icons/temp.svg">resources/icons/temp.svg</file>
+        <file alias="icons/humidity.svg">resources/icons/humidity.svg</file>
+        <file alias="icons/filter.svg">resources/icons/filter.svg</file>
+        <file alias="icons/glass.svg">resources/icons/glass.svg</file>
+    </qresource>
+</RCC>

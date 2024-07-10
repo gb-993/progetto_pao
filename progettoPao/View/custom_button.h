@@ -17,6 +17,7 @@ signals:
     void buttonClickedSignal(QPointer<Sensor>);
 public:
     CustomButton(QString, QPushButton* parent = nullptr);
+    CustomButton(QIcon, QString, QPushButton* parent = nullptr);
     void setSensor(Sensor*);
     QPointer<Sensor> getSensor() const;
 };

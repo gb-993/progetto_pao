@@ -4,8 +4,8 @@ ModifySensorWindow::ModifySensorWindow(QDialog* parent): QDialog(parent){
     label = new QLabel("Modify sensor: ");
     textName = new QLineEdit();
     menuEnv = new QComboBox();
-    saveButton = new CustomButton("Save");
-    cancelButton = new QPushButton("Cancel");
+    saveButton = new CustomButton(QIcon(":/icons/check.svg"), "  Save");
+    cancelButton = new QPushButton(QIcon(":/icons/times.svg"), "  Cancel");
     settingsLayout = new QVBoxLayout();
     mainLayout = new QVBoxLayout();
     buttonLayout = new QVBoxLayout();

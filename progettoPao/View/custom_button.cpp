@@ -6,7 +6,11 @@ CustomButton::CustomButton(QString n, QPushButton* parent): QPushButton(parent),
     disconnect(this, &CustomButton::clicked, this, &CustomButton::buttonClicked);
     connect(this, &CustomButton::clicked, this, &CustomButton::buttonClicked);
 }
-
+CustomButton::CustomButton(QIcon icon, QString n, QPushButton* parent): QPushButton(icon, name, parent), name(n)  {
+    this->setText(name);
+    disconnect(this, &CustomButton::clicked, this, &CustomButton::buttonClicked);
+    connect(this, &CustomButton::clicked, this, &CustomButton::buttonClicked);
+}
 // emette segnale quando viene premuto il CustomButton
 void CustomButton::buttonClicked() {
     emit buttonClickedSignal(sensor);

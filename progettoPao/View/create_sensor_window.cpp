@@ -9,8 +9,8 @@ CreateSensorWindow::CreateSensorWindow(QDialog* parent): QDialog(parent) {
     menuEnv = new QComboBox();
     menuStatusLight = new QComboBox();
     menuFilter = new QComboBox();
-    createButton = new QPushButton("Create");
-    cancelButton = new QPushButton("Cancel");
+    createButton = new QPushButton(QIcon(":/icons/check.svg"), "  Create");
+    cancelButton = new QPushButton(QIcon(":/icons/times.svg"), "  Cancel");
     mainLayout = new QVBoxLayout();
     specificLayout = new QVBoxLayout();
 

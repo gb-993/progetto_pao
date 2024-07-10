@@ -1,0 +1,46 @@
+Feedback Progetto di Programmazione ad Oggetti
+Studente: Vallotto Caterina
+Valutazione del progetto: Molto buono
+
+Vincoli obbligatori
++ Soddisfatti
+
+
+Orientamento ad oggetti
++ Incapsulamento
++ Modularità (modello logico e la GUI sono separati)
++ Estensibilità ed evolvibilità, polimorfismo
++ Efficienza e robustezza
+
+
+Funzionalità
++ Funzionalità di ricerca e filtro
++ Ricerca in tempo reale
++ Ricerca case-insensitive
++ Permette impostazione e modifica di diversi parametri dei sensori
+- Migliorabile prevedendo funzionalità aggiuntive, come la simulazione
+  di sensori guasti
+
+
+GUI
++ Usabile e intuitiva
++ Robusta, gestisce ridimensionamento
++ Utilizza alcuni colori e stili grafici
+- Migliorabile prevedendo l'utilizzo di icone, ad esempio accanto
+  ai nomi dei sensori per mostrarne il tipo, o nei pulsanti
+- Migliorabile attraverso l'uso di immagini
+- Migliorabile prevedendo l'utilizzo di altri tipi di grafici, come istogrammi,
+  diagrammi a barre, eccetera
+
+
+Relazione
++ Adeguata
+
+
+Suggerimenti non collegati alla valutazione
+Nessuno.
++ Adeguata
+
+
+Suggerimenti non collegati alla valutazione
+Nessuno.

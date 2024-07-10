@@ -3,9 +3,9 @@
 SensorOptions::SensorOptions(QWidget* parent): QWidget(parent) {
 
     buttonsLayout = new QVBoxLayout();
-    modify = new QPushButton("Modify");
-    deleteButton = new QPushButton("Delete");
-    start_simulation = new CustomButton("New Simulation");
+    modify = new QPushButton(QIcon(":/icons/pencil.svg"), "  Modify");
+    deleteButton = new QPushButton(QIcon(":/icons/trash.svg"), "  Delete");
+    start_simulation = new CustomButton(QIcon(":/icons/data.svg"), "  New Simulation");
 
     setFixedWidth(210);
 

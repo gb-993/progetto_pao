@@ -2,9 +2,9 @@
 
 TopLayout::TopLayout(QWidget* parent): QWidget(parent) {
 
-    createButton = new QPushButton("Create Sensor");
-    uploadButton = new QPushButton("Upload Simulation");
-    saveButton = new QPushButton("Save");
+    createButton = new QPushButton(QIcon(":/icons/add.svg"), "  Create Sensor");
+    uploadButton = new QPushButton(QIcon(":/icons/upload.svg"), "  Upload Simulation");
+    saveButton = new QPushButton(QIcon(":/icons/save.svg"), "  Save");
     buttonsLayout = new QHBoxLayout();
 
     setFixedHeight(50);

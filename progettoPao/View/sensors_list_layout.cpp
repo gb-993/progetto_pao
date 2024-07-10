@@ -11,6 +11,11 @@ SensorsListLayout::SensorsListLayout(QWidget* parent): QWidget(parent) {
     sensorsLabel->setWordWrap(true);
     sensorsLabel->setAlignment(Qt::AlignCenter);
 
+    searchBar->setClearButtonEnabled(true);
+    QAction *iconAction = new QAction();
+    QIcon icon(":/icons/search.svg");
+    iconAction->setIcon(icon);
+    searchBar->addAction(iconAction,QLineEdit::LeadingPosition);
     searchBar->setPlaceholderText("Search a sensor");
     searchBar->setStyleSheet("background-color: white; color: #000080; font-size: 12px;");
 
@@ -28,11 +33,33 @@ SensorsListLayout::SensorsListLayout(QWidget* parent): QWidget(parent) {
 // aggiunge un CustomButton al layout e alla buttonsList; aggiunge this come osservatore del sensore passato
 void SensorsListLayout::addButton(Sensor* s) {
     sensorsLabel->hide();
+    QIcon *icon = nullptr;
+    QString type = s->getType();
+    if (type == "Temperature") {
+        icon = new QIcon(":/icons/temp.svg");
+    } else if (type == "Humidity") {
+        icon = new QIcon(":/icons/humidity.svg");
+    } else if (type == "Light") {
+        icon = new QIcon(":/icons/light.svg");
+    } else if (type == "Filter Changed") {
+        icon = new QIcon(":/icons/filter.svg");
+    } else if (type == "Volume") {
+        icon = new QIcon(":/icons/glass.svg");
+    }
 
-    CustomButton* button = new CustomButton(s->getName());
+    CustomButton* button = nullptr;
+    if (icon) {
+        button = new CustomButton(*icon, "  " + s->getName());
+    } else {
+        button = new CustomButton(s->getName());
+    }
+    if(button == nullptr) {
+        return;
+    }
     button->setSensor(s);
     buttonsList.append(button);
     button->setStyleSheet("background-color: white; color: #000080; font-size: 14px;");
+
     buttonsLayout->insertWidget(0, button, 0, Qt::AlignTop);
 
     disconnect(button, &CustomButton::buttonClickedSignal, this, &SensorsListLayout::showInfo);
@@ -48,7 +75,7 @@ void SensorsListLayout::addButton(Sensor* s) {
 void SensorsListLayout::notify(Sensor& s) {
     for(auto list=buttonsList.begin(); list!=buttonsList.end(); list++){
         if((*list)->getSensor()->getId() == s.getId()){
-            (*list)->setText(s.getName());
+            (*list)->setText("  "+s.getName());
             break;
         }
     }

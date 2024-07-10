@@ -3,8 +3,8 @@
 ConfirmDeleteWindow::ConfirmDeleteWindow(QDialog* parent): QDialog(parent) {
 
     label = new QLabel("Do you want to delete this sensor?");
-    deleteButton = new CustomButton("Yes");
-    backButton = new QPushButton("No");
+    deleteButton = new CustomButton(QIcon(":/icons/check.svg"), "  Yes");
+    backButton = new QPushButton(QIcon(":/icons/times.svg"), "  No");
     layout = new QVBoxLayout();
 
     setStyleSheet("background-color: #c2c2a3; color: #000080;");
