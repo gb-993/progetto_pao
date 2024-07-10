@@ -24,35 +24,37 @@ void SensorChartVisitor::visitLight(Sensor_light& light) {
 
     series->append(barSet);
 
-    // Remove existing series and add the new one
+    // Remove existing series and axes
     for (QAbstractSeries *existingSeries : chart->series()) {
         chart->removeSeries(existingSeries);
     }
+    for (QAbstractAxis *axis : chart->axes()) {
+        chart->removeAxis(axis);
+    }
+
     chart->addSeries(series);
 
-    chart->createDefaultAxes(); // Adjust axes as needed
 
-    // Add axis titles
+    // Create and configure the axes
     QBarCategoryAxis *axisX = new QBarCategoryAxis();
     axisX->append(categories);
     chart->addAxis(axisX, Qt::AlignBottom);
+    series->attachAxis(axisX);
 
     QValueAxis *axisY = new QValueAxis();
     axisY->setLabelFormat("%.2f");
     chart->addAxis(axisY, Qt::AlignLeft);
+    series->attachAxis(axisY);
 
     chart->legend()->setVisible(true); // Adjust legend visibility as needed
     chart->legend()->setAlignment(Qt::AlignBottom); // Position legend at the bottom
 }
 
+
 void SensorChartVisitor::visitTemperature(Sensor_temperature& temp) {
 
     QList<QPointF> dati = temp.getSimData();
     QLineSeries *series = new QLineSeries();
-    if (chart->series().contains(series)) {
-        chart->removeSeries(series);
-    }
-    series->clear();
 
     for (const QPointF &punto : dati) {
         series->append(punto);
@@ -74,11 +76,9 @@ void SensorChartVisitor::visitHumidity(Sensor_humidity& hum) {
 
     QList<QPointF> dati = hum.getSimData();
     QLineSeries *series = new QLineSeries();
-    if (chart->series().contains(series)) {
-        chart->removeSeries(series);
+    for (QAbstractAxis *axis : chart->axes()) {
+        chart->removeAxis(axis);
     }
-    series->clear();
-
     for (const QPointF &punto : dati) {
         series->append(punto);
     }
@@ -97,7 +97,7 @@ void SensorChartVisitor::visitHumidity(Sensor_humidity& hum) {
 
 void SensorChartVisitor::visitVolume(Sensor_volume& vol) {
 
-    QList<QPointF> data = vol.getSimData();
+    QList<QPointF> data = vol.getSimData(); // Retrieve the simulation data
     QBarSeries *series = new QBarSeries();
 
     QBarSet *barSet = new QBarSet("");
@@ -111,33 +111,36 @@ void SensorChartVisitor::visitVolume(Sensor_volume& vol) {
 
     series->append(barSet);
 
-    // Remove existing series and add the new one
+    // Remove existing series and axes
     for (QAbstractSeries *existingSeries : chart->series()) {
         chart->removeSeries(existingSeries);
     }
+    for (QAbstractAxis *axis : chart->axes()) {
+        chart->removeAxis(axis);
+    }
+
     chart->addSeries(series);
 
-    chart->createDefaultAxes();
 
+    // Create and configure the axes
     QBarCategoryAxis *axisX = new QBarCategoryAxis();
     axisX->append(categories);
     chart->addAxis(axisX, Qt::AlignBottom);
+    series->attachAxis(axisX);
 
     QValueAxis *axisY = new QValueAxis();
     axisY->setLabelFormat("%.2f");
     chart->addAxis(axisY, Qt::AlignLeft);
+    series->attachAxis(axisY);
 
-    chart->legend()->setVisible(true);
-    chart->legend()->setAlignment(Qt::AlignBottom);
+    chart->legend()->setVisible(true); // Adjust legend visibility as needed
+    chart->legend()->setAlignment(Qt::AlignBottom); // Position legend at the bottom
 }
 void SensorChartVisitor::visitFilter(Sensor_filter& filter) {
 
     QList<QPointF> dati = filter.getSimData();
     QLineSeries *series = new QLineSeries();
-    if (chart->series().contains(series)) {
-        chart->removeSeries(series);
-    }
-    series->clear();
+
 
     for (const QPointF &punto : dati) {
         series->append(punto);
