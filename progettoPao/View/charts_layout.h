@@ -2,21 +2,22 @@
 #define CHARTS_LAYOUT_H
 
 #include <QChart>
-#include <QLineSeries>
 #include <QChartView>
 #include <QPointF>
 #include <QVBoxLayout>
+#include "sensor_chart_visitor.h"
 
 class ChartsLayout: public QWidget {
     Q_OBJECT
 private:
     QVBoxLayout *layout;
-    QLineSeries *series;
     QChart *chart;
     QChartView *chartView;
+    SensorChartVisitor *visitor;
 public:
     ChartsLayout(QWidget* parent = nullptr);
-    void setUpChart(QList<QPointF>);
+    void setUpChart(Sensor*);
+    // virtual void notify(Sensor&);
 };
 
 #endif // CHARTS_LAYOUT_H

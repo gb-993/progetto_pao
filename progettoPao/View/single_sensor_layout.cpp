@@ -42,7 +42,7 @@ void SingleSensorLayout::setUpOptions(Sensor* s) {
     if(!s->has_simulation_data()){
         s->genSimulation();
     }
-    chart->setUpChart(s->getSimData());
+    chart->setUpChart(s);
     chart->show();
 }
 

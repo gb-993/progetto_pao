@@ -118,7 +118,7 @@ void Controller::getSensorDelete(Sensor* s) {
 // genera una simulazione per il sensore passato e chiama la setUpCharts sul sensore passato
 void Controller::newSimulation(Sensor* s) {
     s->genSimulation();
-    chart->setUpChart(s->getSimData());
+    chart->setUpChart(s);
 }
 
 // prende il path da QFileDialog e chiama la funzione func_save(path)
