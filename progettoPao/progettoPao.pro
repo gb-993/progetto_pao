@@ -38,8 +38,8 @@ SOURCES += \
     View/sensors_list_layout.cpp \
     View/single_sensor_layout.cpp \
     View/top_layout.cpp
-    resources.qrc
 
+RESOURCES+= resources.qrc
 
 HEADERS += \
     Controller/sensor_controller_visitor.h \
