@@ -1,4 +1,4 @@
-    QT += core gui
+QT += core gui
 QT += charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -28,6 +28,7 @@ SOURCES += \
     Model/sensor_generator.cpp \
     Model/sensor_humidity.cpp \
     View/sensor_info_visitor.cpp \
+    View/sensor_chart_visitor.cpp \
     Model/sensor_light.cpp \
     Model/sensor_manager.cpp \
     View/sensor_modify_visitor.cpp \
@@ -37,6 +38,7 @@ SOURCES += \
     View/sensors_list_layout.cpp \
     View/single_sensor_layout.cpp \
     View/top_layout.cpp
+    resources.qrc
 
 
 HEADERS += \
@@ -54,6 +56,7 @@ HEADERS += \
     Model/sensor_generator.h \
     Model/sensor_humidity.h \
     View/sensor_info_visitor.h \
+    View/sensor_chart_visitor.h \
     Model/sensor_light.h \
     Model/sensor_manager.h \
     View/sensor_modify_visitor.h \
